@@ -1,0 +1,23 @@
+{
+    "name": "ttt",
+    "description": "console tic-tac-toe game",
+    "version": "0.0.1",
+    "dependencies": {},
+    "engines": {
+        "node": ">=0.8"
+    },
+    "devDependencies": {
+        "grunt": "0.4.2",
+        "grunt-contrib-jshint": "0.8.0",
+        "grunt-jasmine-node": "0.1.0",
+        "grunt-jsbeautifier": "0.2.6"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/cymen/node-ttt/blob/master/LICENSE"
+    }],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cymen/node-ttt"
+    }
+}
