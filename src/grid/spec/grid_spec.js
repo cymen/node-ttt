@@ -1,5 +1,5 @@
 'use strict';
-var Grid = require('../src/grid');
+var Grid = require('../grid');
 
 describe('grid', function() {
     it('is instantiated with a side length', function() {

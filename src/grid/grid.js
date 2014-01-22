@@ -1,4 +1,5 @@
 'use strict';
+var rows = require('./rows');
 
 module.exports = function(length, values) {
     var keys = [],
@@ -32,14 +33,7 @@ module.exports = function(length, values) {
         },
 
         horizontal_rows: function() {
-            var rows = [],
-                cells = this.cells();
-
-            for (var i = 0; i < size; i += length) {
-                rows.push(cells.slice(i, 3));
-            }
-
-            return rows;
+            return rows.horizontal(this.cells());
         },
 
         vertical_rows: function() {
