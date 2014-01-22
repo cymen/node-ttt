@@ -80,4 +80,19 @@ describe('grid', function() {
 
         expect(grid.diagonal_rows()).toMatch(new Error('Cannot determine diagonal rows on a grid with even length sides'));
     });
+
+    it('returns all of the rows', function() {
+        var values = [
+            'a', 'b', 'c',
+            'd', 'e', 'f',
+            'h', 'i', 'j'
+        ];
+
+        var grid = new Grid(3, values);
+        var rows = grid.rows();
+
+        expect(grid.rows()).toContain(['a', 'b', 'c'], ['d', 'e', 'f'], ['h', 'i', 'j']);
+        expect(grid.rows()).toContain(['a', 'd', 'h'], ['b', 'e', 'i'], ['c', 'f', 'j']);
+        expect(grid.rows()).toContain(['a', 'e', 'j'], ['c', 'e', 'h']);
+    });
 });

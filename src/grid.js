@@ -60,6 +60,13 @@ module.exports = function(length, values) {
             return [left, right];
         },
 
+        rows: function() {
+            return []
+                .concat(this.horizontal_rows())
+                .concat(this.vertical_rows())
+                .concat(this.diagonal_rows());
+        },
+
         size: function() {
             return size;
         }
