@@ -57,7 +57,6 @@ var all = function(cells) {
         .concat(diagonal(cells));
 };
 
-
 module.exports.all = all;
 module.exports.diagonal = diagonal;
 module.exports.horizontal = horizontal;
