@@ -1,10 +1,14 @@
 'use strict';
 
+var calculate_length = function(cells) {
+    return Math.sqrt(cells.length);
+};
+
 var diagonal = function(cells) {
     var left = [],
         right = [],
         size = cells.length,
-        length = Math.sqrt(size);
+        length = calculate_length(cells);
 
     if (length % 2 === 0) {
         return new Error('Cannot determine diagonal rows on a grid with even length sides');
@@ -21,7 +25,7 @@ var diagonal = function(cells) {
 var horizontal = function(cells) {
     var rows = [],
         size = cells.length,
-        length = Math.sqrt(size);
+        length = calculate_length(cells);
 
     for (var i = 0; i < size; i += length) {
         rows.push(cells.slice(i, length));
@@ -33,7 +37,7 @@ var horizontal = function(cells) {
 var vertical = function(cells) {
     var rows = [],
         size = cells.length,
-        length = Math.sqrt(size);
+        length = calculate_length(cells);
 
     for (var x = 0; x < length; x++) {
         var row = [];
