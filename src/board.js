@@ -1,4 +1,5 @@
 'use strict';
+
 var Grid = require('./grid/grid'),
     ROW_LENGTH = 3;
 

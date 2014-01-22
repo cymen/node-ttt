@@ -1,4 +1,5 @@
 'use strict';
+
 var rows = require('./rows');
 
 module.exports = function(length, values) {
