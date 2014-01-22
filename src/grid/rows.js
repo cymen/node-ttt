@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.diagonal = function(cells) {
+var diagonal = function(cells) {
     var left = [],
         right = [],
         size = cells.length,
@@ -18,7 +18,7 @@ module.exports.diagonal = function(cells) {
     return [left, right];
 };
 
-module.exports.horizontal = function(cells) {
+var horizontal = function(cells) {
     var rows = [],
         size = cells.length,
         length = Math.sqrt(size);
@@ -30,7 +30,7 @@ module.exports.horizontal = function(cells) {
     return rows;
 };
 
-module.exports.vertical = function(cells) {
+var vertical = function(cells) {
     var rows = [],
         size = cells.length,
         length = Math.sqrt(size);
@@ -45,3 +45,16 @@ module.exports.vertical = function(cells) {
 
     return rows;
 };
+
+var all = function(cells) {
+    return []
+        .concat(horizontal(cells))
+        .concat(vertical(cells))
+        .concat(diagonal(cells));
+};
+
+
+module.exports.all = all;
+module.exports.diagonal = diagonal;
+module.exports.horizontal = horizontal;
+module.exports.vertical = vertical;

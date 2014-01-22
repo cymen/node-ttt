@@ -27,7 +27,10 @@ describe('grid rows (assumes provided array represents a square grid)', function
             'c', 'd'
         ];
 
-        expect(rows.horizontal(values)).toContain(['a', 'b'], ['c', 'd']);
+        var horizontal_rows = rows.horizontal(values);
+
+        expect(horizontal_rows.length).toBe(2);
+        expect(horizontal_rows).toContain(['a', 'b'], ['c', 'd']);
     });
 
     it('returns vertical rows', function() {
@@ -36,6 +39,24 @@ describe('grid rows (assumes provided array represents a square grid)', function
             'c', 'd'
         ];
 
-        expect(rows.vertical(values)).toContain(['a', 'c'], ['b', 'd']);
+        var vertical_rows = rows.vertical(values);
+
+        expect(vertical_rows.length).toBe(2);
+        expect(vertical_rows).toContain(['a', 'c'], ['b', 'd']);
+    });
+
+    it('returns all rows', function() {
+        var values = [
+            'a', 'b', 'c',
+            'd', 'e', 'f',
+            'g', 'h', 'i'
+        ];
+
+        var all = rows.all(values);
+
+        expect(all.length).toBe(3 + 3 + 2);
+        expect(all).toContain(['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']);
+        expect(all).toContain(['a', 'd', 'g'], ['b', 'e', 'h'], ['c', 'f', 'i']);
+        expect(all).toContain(['a', 'e', 'i'], ['c', 'e', 'g']);
     });
 });
