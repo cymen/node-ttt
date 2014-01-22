@@ -1,34 +1,20 @@
 'use strict';
-var ROW_LENGTH = 3,
-    CELL_COUNT = ROW_LENGTH * ROW_LENGTH;
+var Grid = require('./grid'),
+    ROW_LENGTH = 3;
 
 module.exports = function(cells) {
-    cells = cells || [];
+    var grid = new Grid(ROW_LENGTH, cells);
 
     return {
-        cells: function() {
-            return cells.slice(0);
-        },
-
         get: function(index) {
-            return cells[index - 1];
-        },
-
-        open: function() {
-            var open = [];
-            for (var i = 0; i < CELL_COUNT; i++) {
-                if (!cells[i]) {
-                    open.push(i + 1);
-                }
-            }
-            return open;
+            return grid.get(index);
         },
 
         set: function(index, value) {
-            if (cells[index - 1]) {
+            if (this.get(index)) {
                 return new Error('Cannot set a cell that already has a value');
             } else {
-                cells[index - 1] = value;
+                grid.set(index, value);
             }
         }
     };

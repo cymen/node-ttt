@@ -12,41 +12,9 @@ describe('Board', function() {
         it('takes an array of values to populate the cells', function() {
             var board = new Board(['x', 'o', 'x']);
 
-            expect(board.cells()).toEqual(['x', 'o', 'x']);
-        });
-    });
-
-    describe('cells', function() {
-        it('returns an array of cell values', function() {
-            var board = new Board(['x', 'o']);
-
-            expect(board.cells()).toEqual(['x', 'o']);
-        });
-
-        it('does not allow modification of the inner board state', function() {
-            var board = new Board(['x']);
-
-            expect(board.cells()).toEqual(['x']);
-            var cells = board.cells();
-            cells[0] = 'o';
-            expect(cells).toEqual(['o']);
-
-            expect(board.cells()).toEqual(['x']);
-        });
-    });
-
-    describe('open', function() {
-        it('returns all cell numbers on a new board', function() {
-            var board = new Board();
-
-            expect(board.open().length).toBe(9);
-            expect(board.open()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-        });
-
-        it('returns the open cell numbers on a partially populated board', function() {
-            var board = new Board(['x', 'o', 'x']);
-
-            expect(board.open()).toEqual([4, 5, 6, 7, 8, 9]);
+            expect(board.get(1)).toEqual('x');
+            expect(board.get(2)).toEqual('o');
+            expect(board.get(3)).toEqual('x');
         });
     });
 
