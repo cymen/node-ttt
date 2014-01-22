@@ -48,10 +48,6 @@ module.exports = function(length, values) {
             return rows.all(this.cells());
         },
 
-        size: function() {
-            return size;
-        },
-
         set: function(index, value) {
             state[index] = value;
         },

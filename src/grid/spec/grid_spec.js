@@ -6,7 +6,7 @@ describe('grid', function() {
     it('is instantiated with a side length', function() {
         var grid = new Grid(3);
 
-        expect(grid.size()).toBe(9);
+        expect(grid.cells().length).toBe(9);
     });
 
     it('can be instantiated with an array of cell values', function() {
