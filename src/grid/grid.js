@@ -20,6 +20,10 @@ module.exports = function(length, values) {
             });
         },
 
+        get: function(index) {
+            return state[index];
+        },
+
         open: function() {
             var open = [];
 
@@ -50,10 +54,6 @@ module.exports = function(length, values) {
 
         set: function(index, value) {
             state[index] = value;
-        },
-
-        get: function(index) {
-            return state[index];
         }
     };
 };
