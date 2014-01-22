@@ -19,6 +19,18 @@ module.exports = function(length, values) {
             });
         },
 
+        open: function() {
+            var open = [];
+
+            keys.forEach(function(k) {
+                if (state[k] === undefined) {
+                    open.push(k);
+                }
+            });
+
+            return open;
+        },
+
         horizontal_rows: function() {
             var rows = [],
                 cells = this.cells();
