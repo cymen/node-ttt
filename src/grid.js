@@ -69,6 +69,14 @@ module.exports = function(length, values) {
 
         size: function() {
             return size;
+        },
+
+        set: function(index, value) {
+            state[index] = value;
+        },
+
+        get: function(index) {
+            return state[index];
         }
     };
 };
