@@ -77,7 +77,7 @@ describe('Board', function() {
         it('returns an Error if a cell already has a value', function() {
             var board = new Board(['x']);
 
-            expect(board.set(1, 'o')).toEqual(new Error('Cannot set a cell that already has a value'));
+            expect(board.set(1, 'o')).toMatch(new Error('Cannot set a cell that already has a value'));
         });
     });
 });
