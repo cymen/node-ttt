@@ -45,10 +45,7 @@ module.exports = function(length, values) {
         },
 
         rows: function() {
-            return []
-                .concat(this.horizontal_rows())
-                .concat(this.vertical_rows())
-                .concat(this.diagonal_rows());
+            return rows.all(this.cells());
         },
 
         size: function() {

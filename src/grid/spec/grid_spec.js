@@ -1,5 +1,6 @@
 'use strict';
-var Grid = require('../grid');
+var proxyquire = require('proxyquire'),
+    Grid = require('../grid');
 
 describe('grid', function() {
     it('is instantiated with a side length', function() {
@@ -18,82 +19,6 @@ describe('grid', function() {
         var grid = new Grid(3, values);
 
         expect(grid.cells()).toEqual(values);
-    });
-
-    it('returns the horizontal rows', function() {
-        var values = [
-            'a', 'b', 'c',
-            'd', 'e', 'f',
-            'h', 'i', 'j'
-        ];
-
-        var grid = new Grid(3, values);
-
-        expect(grid.horizontal_rows()).toContain(['a', 'b', 'c'], ['d', 'e', 'f'], ['h', 'i', 'j']);
-    });
-
-    it('returns the vertical rows', function() {
-        var values = [
-            'a', 'b', 'c',
-            'd', 'e', 'f',
-            'h', 'i', 'j'
-        ];
-
-        var grid = new Grid(3, values);
-
-        expect(grid.vertical_rows()).toContain(['a', 'd', 'h'], ['b', 'e', 'i'], ['c', 'f', 'j']);
-    });
-
-    it('returns the diagonal rows', function() {
-        var values = [
-            'a', 'b', 'c',
-            'd', 'e', 'f',
-            'h', 'i', 'j'
-        ];
-
-        var grid = new Grid(3, values);
-
-        expect(grid.diagonal_rows()).toContain(['a', 'e', 'j'], ['c', 'e', 'h']);
-    });
-
-    it('returns the diagonal rows for a larger board', function() {
-        var values = [
-            'a', 'b', 'c', 'd', 'e',
-            'f', 'g', 'h', 'i', 'j',
-            'k', 'l', 'm', 'n', 'o',
-            'p', 'q', 'r', 's', 't',
-            'u', 'v', 'w', 'x', 'y'
-        ];
-
-        var grid = new Grid(5, values);
-
-        expect(grid.diagonal_rows()).toContain(['a', 'g', 'm', 's', 'y'], ['e', 'i', 'm', 'q', 'u']);
-    });
-
-    it('returns an Error if attempting to call diagonal rows on a grid with even length size', function() {
-        var values = [
-            'a', 'b',
-            'c', 'd'
-        ];
-
-        var grid = new Grid(2, values);
-
-        expect(grid.diagonal_rows()).toMatch(new Error('Cannot determine diagonal rows on a grid with even length sides'));
-    });
-
-    it('returns all of the rows', function() {
-        var values = [
-            'a', 'b', 'c',
-            'd', 'e', 'f',
-            'h', 'i', 'j'
-        ];
-
-        var grid = new Grid(3, values);
-        var rows = grid.rows();
-
-        expect(grid.rows()).toContain(['a', 'b', 'c'], ['d', 'e', 'f'], ['h', 'i', 'j']);
-        expect(grid.rows()).toContain(['a', 'd', 'h'], ['b', 'e', 'i'], ['c', 'f', 'j']);
-        expect(grid.rows()).toContain(['a', 'e', 'j'], ['c', 'e', 'h']);
     });
 
     it('can get a cell identified by a one-based index', function() {
@@ -135,5 +60,54 @@ describe('grid', function() {
         var grid = new Grid(1, ['x']);
 
         expect(grid.open()).toEqual([]);
+    });
+
+    describe('rows', function() {
+        var mockRows;
+
+        beforeEach(function() {
+            mockRows = {
+                all: jasmine.createSpy('all'),
+                diagonal: jasmine.createSpy('diagonal'),
+                horizontal: jasmine.createSpy('horizontal'),
+                vertical: jasmine.createSpy('vertical')
+            };
+
+            Grid = proxyquire('../grid', {
+                './rows': mockRows
+            });
+        });
+
+        it('asks rows for the horizontal rows', function() {
+            var grid = new Grid(3);
+
+            grid.horizontal_rows();
+
+            expect(mockRows.horizontal).toHaveBeenCalled();
+        });
+
+        it('asks rows for the vertical rows', function() {
+            var grid = new Grid(3);
+
+            grid.vertical_rows();
+
+            expect(mockRows.vertical).toHaveBeenCalled();
+        });
+
+        it('asks rows for the diagonal rows', function() {
+            var grid = new Grid(3);
+
+            grid.diagonal_rows();
+
+            expect(mockRows.diagonal).toHaveBeenCalled();
+        });
+
+        it('asks rows for all of the rows', function() {
+            var grid = new Grid(3);
+
+            grid.rows();
+
+            expect(mockRows.all).toHaveBeenCalled();
+        });
     });
 });

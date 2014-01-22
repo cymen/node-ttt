@@ -26,8 +26,11 @@ module.exports = function(grunt) {
                     afterEach: true,
                     beforeEach: true,
                     describe: true,
+                    xdescribe: true,
                     expect: true,
-                    it: true
+                    it: true,
+                    xit: true,
+                    jasmine: true
                 },
                 boss: true,
                 curly: true,
