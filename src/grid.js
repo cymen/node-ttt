@@ -32,12 +32,13 @@ module.exports = function(length, values) {
         vertical_rows: function() {
             var rows = [];
 
-            // 0, 1, 2
-            // 3  4  5
-            // 6  7  8
-            rows.push([state[0], state[3], state[6]]);
-            rows.push([state[1], state[4], state[7]]);
-            rows.push([state[2], state[5], state[8]]);
+            for (var x=0; x < length; x++) {
+              var row = [];
+              for (var y=x; y < size; y += length) {
+                row.push(state[y]);
+              }
+              rows.push(row);
+            }
 
             return rows;
         },
