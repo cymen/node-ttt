@@ -1,7 +1,13 @@
 'use strict';
-var Board = require('../board');
+var proxyquire = require('proxyquire');
 
 describe('Board', function() {
+    var Board;
+
+    beforeEach(function() {
+        Board = require('../board');
+    });
+
     describe('instantiation', function() {
         it('returns an object on new', function() {
             var board = new Board();
@@ -30,6 +36,24 @@ describe('Board', function() {
 
             expect(board.get(1)).toBe('x');
             expect(board.get(2)).toBe('o');
+        });
+    });
+
+    describe('horizontal_rows', function() {
+        it('asks the grid for the horizontal rows', function() {
+            var horizontal_rows_spy = jasmine.createSpy('horizontal_rows');
+            Board = proxyquire('../board', {
+                '../grid/grid': function() {
+                    return {
+                        horizontal_rows: horizontal_rows_spy
+                    };
+                }
+            });
+
+            var board = new Board();
+            board.horizontal_rows();
+
+            expect(horizontal_rows_spy).toHaveBeenCalled();
         });
     });
 

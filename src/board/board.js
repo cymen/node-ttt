@@ -11,6 +11,10 @@ module.exports = function(cells) {
             return grid.get(index);
         },
 
+        horizontal_rows: function() {
+            return grid.horizontal_rows();
+        },
+
         set: function(index, value) {
             if (this.get(index)) {
                 return new Error('Cannot set a cell that already has a value');
