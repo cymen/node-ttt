@@ -9,3 +9,4 @@
 ## To run the tests:
 
     grunt
+
