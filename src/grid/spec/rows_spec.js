@@ -65,7 +65,7 @@ describe('grid rows (assumes provided array represents a square grid)', function
         expect(vertical_rows).toContain(['b', 'd']);
     });
 
-    xit('returns all rows', function() {
+    it('returns all rows', function() {
         var values = [
             'a', 'b', 'c',
             'd', 'e', 'f',
@@ -75,17 +75,12 @@ describe('grid rows (assumes provided array represents a square grid)', function
         var all = rows.all(values);
 
         expect(all.length).toBe(3 + 3 + 2);
-        [
-            ['a', 'b', 'c'],
-            ['d', 'e', 'f'],
-            ['g', 'h', 'i'],
-            ['a', 'd', 'g'],
-            ['b', 'e', 'h'],
-            ['c', 'f', 'i'],
-            ['a', 'e', 'i'],
-            ['c', 'e', 'g']
-        ].forEach(function(row) {
-            expect(all).toContain(row);
-        });
+        []
+            .concat(rows.horizontal(values))
+            .concat(rows.vertical(values))
+            .concat(rows.diagonal(values))
+            .forEach(function(row) {
+                expect(all).toContain(row);
+            });
     });
 });
