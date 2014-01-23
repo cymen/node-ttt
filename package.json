@@ -2,7 +2,11 @@
     "name": "ttt",
     "description": "console tic-tac-toe game",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "keypress": "0.2.1",
+        "single-prompt": "0.0.5",
+        "q": "1.0.0"
+    },
     "engines": {
         "node": ">=0.8"
     },
