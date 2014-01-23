@@ -30,7 +30,8 @@ module.exports = function(grunt) {
                     expect: true,
                     it: true,
                     xit: true,
-                    jasmine: true
+                    jasmine: true,
+                    spyOn: true
                 },
                 boss: true,
                 curly: true,

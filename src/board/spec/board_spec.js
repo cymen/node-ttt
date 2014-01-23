@@ -1,5 +1,5 @@
 'use strict';
-var Board = require('../src/board');
+var Board = require('../board');
 
 describe('Board', function() {
     describe('instantiation', function() {

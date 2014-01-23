@@ -1,6 +1,6 @@
 'use strict';
 
-var Grid = require('./grid/grid'),
+var Grid = require('../grid/grid'),
     ROW_LENGTH = 3;
 
 module.exports = function(cells) {
