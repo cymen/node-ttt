@@ -14,9 +14,12 @@ var diagonal = function(cells) {
         return new Error('Cannot determine diagonal rows on a grid with even length sides');
     }
 
-    for (var i = 1; i <= size; i += length + 1) {
-        left.push(cells[i - 1]);
-        right.push(cells[i - 1 + length]);
+    for (var i = 0; i < size; i += length + 1) {
+        left.push(cells[i]);
+    }
+
+    for (var j = length-1; j < size - 1; j += length -1) {
+        right.push(cells[j]);
     }
 
     return [left, right];
@@ -28,7 +31,7 @@ var horizontal = function(cells) {
         length = calculate_length(cells);
 
     for (var i = 0; i < size; i += length) {
-        rows.push(cells.slice(i, length));
+        rows.push(cells.slice(i, i + length));
     }
 
     return rows;
