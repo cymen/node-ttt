@@ -1,4 +1,4 @@
-# Tic-Tac-Toe
+# Tic-Tac-Toe [![Build Status](https://travis-ci.org/cymen/node-ttt.png?branch=master)](https://travis-ci.org/cymen/node-ttt)
 
 ## Initial setup
 
