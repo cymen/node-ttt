@@ -18,7 +18,7 @@ var diagonal = function(cells) {
         left.push(cells[i]);
     }
 
-    for (var j = length-1; j < size - 1; j += length -1) {
+    for (var j = length - 1; j < size - 1; j += length - 1) {
         right.push(cells[j]);
     }
 
