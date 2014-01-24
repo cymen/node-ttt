@@ -6,5 +6,7 @@ var Q = require('q'),
 module.exports = {
     play: function(choices) {
         return prompter.prompt('Choose a space', choices);
-    }
+    },
+
+    type: 'human'
 };

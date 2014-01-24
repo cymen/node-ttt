@@ -11,4 +11,8 @@ describe('next open player', function() {
                 done();
             });
     });
+
+    it('has a type of computer', function() {
+        expect(next_open.type).toBe('computer');
+    });
 });

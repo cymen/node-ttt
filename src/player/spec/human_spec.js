@@ -16,4 +16,8 @@ describe('human player', function() {
             done();
         });
     });
+
+    it('has type of human', function() {
+        expect(human.type).toBe('human');
+    });
 });
