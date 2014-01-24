@@ -4,7 +4,7 @@
     "version": "0.0.1",
     "dependencies": {
         "keypress": "0.2.1",
-        "single-prompt": "0.0.5",
+        "single-prompt": "0.0.8",
         "q": "1.0.0"
     },
     "engines": {
@@ -15,6 +15,7 @@
         "grunt-contrib-jshint": "0.8.0",
         "grunt-jasmine-node": "0.1.0",
         "grunt-jsbeautifier": "0.2.6",
+        "promise-matchers": "0.9.5",
         "proxyquire": "0.5.2"
     },
     "licenses": [{

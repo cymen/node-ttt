@@ -24,6 +24,29 @@ describe('Board', function() {
         });
     });
 
+    describe('all_rows', function() {
+        it('gets all the rows on the board', function() {
+            var board = new Board();
+
+            expect(board.all_rows().length).toBe(8);
+        });
+    });
+
+    describe('empty_spaces', function() {
+        it('returns all cell numbers on an empty board', function() {
+            var board = new Board();
+
+            expect(board.empty_spaces()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        });
+
+        it('does not return cell numbers that have been played', function() {
+            var board = new Board();
+            board.set(5, 'x');
+
+            expect(board.empty_spaces()).toEqual([1, 2, 3, 4, 6, 7, 8, 9]);
+        });
+    });
+
     describe('get', function() {
         it('returns undefined for an unset cell', function() {
             var board = new Board();
@@ -54,6 +77,24 @@ describe('Board', function() {
             board.horizontal_rows();
 
             expect(horizontal_rows_spy).toHaveBeenCalled();
+        });
+    });
+
+    describe('is_full', function() {
+        it('returns false on an empty board', function() {
+            var board = new Board();
+
+            expect(board.is_full()).toBe(false);
+        });
+
+        it('returns true on a full board', function() {
+            var board = new Board([
+                'x', 'o', 'x',
+                'x', 'o', 'x',
+                'o', 'x', 'o'
+            ]);
+
+            expect(board.is_full()).toBe(true);
         });
     });
 
