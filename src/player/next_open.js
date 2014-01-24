@@ -1,7 +1,8 @@
 'use strict';
+var Q = require('q');
 
 module.exports = {
     play: function(choices) {
-        return choices[0];
+        return Q.resolve(choices[0]);
     }
 };

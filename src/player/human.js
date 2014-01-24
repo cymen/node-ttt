@@ -5,10 +5,6 @@ var Q = require('q'),
 
 module.exports = {
     play: function(choices) {
-        return Q.promise(function(resolve) {
-            prompter
-                .prompt('Choose a space', choices)
-                .then(resolve);
-        });
+        return prompter.prompt('Choose a space', choices);
     }
 };
