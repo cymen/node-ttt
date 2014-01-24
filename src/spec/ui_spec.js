@@ -17,6 +17,24 @@ describe('user interface', function() {
         });
     });
 
+    describe('play_again', function() {
+        it('asks the player if they would like to play again', function(done) {
+            var promise = ui.play_again();
+
+            prompter.fakeKeypress('n');
+
+            promise.then(
+                function(choice) {
+                    expect(choice).toBe('n');
+                    done();
+                },
+                function() {
+                    expect('reject').toBe('not happening');
+                }
+            );
+        });
+    });
+
     describe('player_choice', function() {
         it('prompts the player to choose x or o', function(done) {
             var promise = ui.player_choice();
