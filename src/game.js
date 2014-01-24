@@ -24,13 +24,16 @@ module.exports = {
     get_play: function(board, player_x, player_o) {
         var current_player;
 
-        print.rows(board.horizontal_rows()); // TODO this doesn't belong in get_play
-
         if (scorer.turn(board) === 'x') {
             current_player = player_x;
         } else {
             current_player = player_o;
         }
+
+        if (current_player.type === 'human') {
+            print.rows(board.horizontal_rows());
+        }
+
 
         return current_player.play(board.empty_cells());
     }
