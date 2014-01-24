@@ -5,6 +5,10 @@ module.exports = {
         return board.is_full() && !this.is_won(board);
     },
 
+    is_over: function(board) {
+        return this.is_won(board) || this.is_tied(board);
+    },
+
     is_won: function(board) {
         var winner = this.winner(board);
         if (winner) {

@@ -26,6 +26,32 @@ describe('scorer', function() {
         });
     });
 
+    describe('is_over', function() {
+        it('does not see an empty board as over', function() {
+            expect(scorer.is_over(new Board())).toBe(false);
+        });
+
+        it('identifies a won game is over', function() {
+            var board = new Board([
+                'x', 'o', 'x',
+                'o', 'x', 'o',
+                'o', 'x', 'o'
+            ]);
+
+            expect(scorer.is_over(board)).toBe(true);
+        });
+
+        it('identifies a tied game as over', function() {
+            var board = new Board([
+                'x', 'o', 'x',
+                'o', 'x', 'o',
+                'o', 'x', 'o'
+            ]);
+
+            expect(scorer.is_over(board)).toBe(true);
+        });
+    });
+
     it('can identify a board as won', function() {
         var board = new Board(['x', 'x', 'x']);
 
