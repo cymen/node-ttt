@@ -32,13 +32,13 @@ describe('scorer', function() {
         });
 
         it('identifies a won game is over', function() {
-                var board = new Board([
-                    'x', 'o', 'x',
-                    'o', 'x', 'o',
-                    'o', 'x', 'o'
-                ]);
+            var board = new Board([
+                'x', 'o', 'x',
+                'o', 'x', 'o',
+                'o', 'x', 'o'
+            ]);
 
-                expect(scorer.is_over(board)).toBe(true);
+            expect(scorer.is_over(board)).toBe(true);
         });
 
         it('identifies a tied game as over', function() {
