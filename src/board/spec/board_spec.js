@@ -32,18 +32,18 @@ describe('Board', function() {
         });
     });
 
-    describe('empty_spaces', function() {
+    describe('empty_cells', function() {
         it('returns all cell numbers on an empty board', function() {
             var board = new Board();
 
-            expect(board.empty_spaces()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            expect(board.empty_cells()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
         });
 
         it('does not return cell numbers that have been played', function() {
             var board = new Board();
             board.set(5, 'x');
 
-            expect(board.empty_spaces()).toEqual([1, 2, 3, 4, 6, 7, 8, 9]);
+            expect(board.empty_cells()).toEqual([1, 2, 3, 4, 6, 7, 8, 9]);
         });
     });
 

@@ -11,7 +11,7 @@ module.exports = function(cells) {
             return grid.rows();
         },
 
-        empty_spaces: function() {
+        empty_cells: function() {
             return grid.open();
         },
 
