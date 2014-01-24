@@ -32,13 +32,13 @@ describe('scorer', function() {
         });
 
         it('identifies a won game is over', function() {
-            var board = new Board([
-                'x', 'o', 'x',
-                'o', 'x', 'o',
-                'o', 'x', 'o'
-            ]);
+                var board = new Board([
+                    'x', 'o', 'x',
+                    'o', 'x', 'o',
+                    'o', 'x', 'o'
+                ]);
 
-            expect(scorer.is_over(board)).toBe(true);
+                expect(scorer.is_over(board)).toBe(true);
         });
 
         it('identifies a tied game as over', function() {
@@ -79,6 +79,20 @@ describe('scorer', function() {
 
         it('works correctly on an empty row', function() {
             expect(scorer.row_winner([, , , ])).toBeUndefined();
+        });
+    });
+
+    describe('turn', function() {
+        it('is x for an empty board', function() {
+            var board = new Board();
+
+            expect(scorer.turn(board)).toBe('x');
+        });
+
+        it('identifies the correct player for a partially played board', function() {
+            var board = new Board(['x', 'o', 'x']);
+
+            expect(scorer.turn(board)).toBe('o');
         });
     });
 

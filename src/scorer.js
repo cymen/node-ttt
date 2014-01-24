@@ -28,6 +28,15 @@ module.exports = {
         return firstValue;
     },
 
+    turn: function(board) {
+        var empty_cell_count = board.empty_cells().length;
+        if (empty_cell_count % 2 === 1) {
+            return 'x';
+        } else {
+            return 'o';
+        }
+    },
+
     winner: function(board) {
         var rows = board.all_rows();
         for (var i = 0, length = rows.length; i < length; i++) {
