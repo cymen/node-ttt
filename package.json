@@ -4,7 +4,7 @@
     "version": "0.0.1",
     "dependencies": {
         "keypress": "0.2.1",
-        "single-prompt": "0.0.8",
+        "single-prompt": "0.1.0",
         "q": "1.0.0"
     },
     "engines": {
