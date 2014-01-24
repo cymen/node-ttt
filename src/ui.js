@@ -1,7 +1,5 @@
 'use strict';
-
-var prompter = require('single-prompt'),
-    Board = require('./board/board');
+var prompter = require('single-prompt');
 
 module.exports = {
     greeting: function() {
