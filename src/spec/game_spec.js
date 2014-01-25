@@ -31,8 +31,8 @@ describe('game', function() {
     it('prompts x for a cell on an empty board', function(done) {
         var mockPlayer = function() {
             return {
-                play: jasmine.createSpy().andCallFake(function(choices) {
-                    return Q.resolve(choices[0]);
+                play: jasmine.createSpy().andCallFake(function(board) {
+                    return Q.resolve(board.empty_cells()[0]);
                 })
             };
         };
@@ -44,7 +44,7 @@ describe('game', function() {
 
         promise.then(
             function(choice) {
-                expect(player_x.play).toHaveBeenCalledWith([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+                expect(player_x.play).toHaveBeenCalledWith(board);
                 expect(choice).toBe(1);
                 expect(player_o.play).not.toHaveBeenCalled();
                 done();

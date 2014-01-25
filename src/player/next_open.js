@@ -2,8 +2,8 @@
 var Q = require('q');
 
 module.exports = {
-    play: function(choices) {
-        return Q.resolve(choices[0]);
+    play: function(board) {
+        return Q.resolve(board.empty_cells()[0]);
     },
 
     type: 'computer'

@@ -1,11 +1,12 @@
 'use strict';
 
-describe('next open player', function() {
-    var next_open = require('../next_open');
+var Board = require('../../board/board'),
+    next_open = require('../next_open');
 
+describe('next open player', function() {
     it('picks the first open cell', function(done) {
         next_open
-            .play([1, 2, 3])
+            .play(new Board())
             .then(function(choice) {
                 expect(choice).toBe(1);
                 done();

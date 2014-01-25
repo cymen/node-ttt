@@ -35,6 +35,6 @@ module.exports = {
         }
 
 
-        return current_player.play(board.empty_cells());
+        return current_player.play(board);
     }
 };
