@@ -24,6 +24,14 @@ describe('Board', function() {
         });
     });
 
+    describe('CELL_COUNT', function() {
+        it('exposes cell count', function() {
+            var board = new Board();
+
+            expect(board.CELL_COUNT).toBe(9);
+        });
+    });
+
     describe('all_rows', function() {
         it('gets all the rows on the board', function() {
             var board = new Board();
@@ -111,6 +119,17 @@ describe('Board', function() {
             var board = new Board(['x']);
 
             expect(board.set(1, 'o')).toMatch(new Error('Cannot set a cell that already has a value'));
+        });
+    });
+
+    describe('unset', function() {
+        it('can set a cell back to undefined', function() {
+            var board = new Board(['x']);
+
+            expect(board.get(1)).toBe('x');
+            board.unset(1);
+
+            expect(board.get(1)).toBe(undefined);
         });
     });
 });

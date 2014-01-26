@@ -7,6 +7,8 @@ module.exports = function(cells) {
     var grid = new Grid(ROW_LENGTH, cells);
 
     return {
+        CELL_COUNT: ROW_LENGTH * ROW_LENGTH,
+
         all_rows: function() {
             return grid.rows();
         },
@@ -33,6 +35,10 @@ module.exports = function(cells) {
             } else {
                 grid.set(index, value);
             }
+        },
+
+        unset: function(index) {
+            grid.set(index, undefined);
         }
     };
 };
