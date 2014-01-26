@@ -15,8 +15,7 @@ module.exports = {
             weights = {},
             myMark = scorer.turn(board),
             bestResult = -Infinity,
-            result,
-            move;
+            result;
 
         if (board.empty_cells().length === 9) {
             return OPTIMAL_CELLS;
@@ -56,8 +55,7 @@ module.exports = {
     negamax: function(board, player, height, alpha, beta) {
         var self = this,
             bestWeight = -Infinity,
-            playResult,
-            endingPlayer;
+            playResult;
 
         if (scorer.is_over(board)) {
             return this.analysis(board, player, height);
