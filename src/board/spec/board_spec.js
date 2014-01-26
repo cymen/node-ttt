@@ -1,9 +1,8 @@
 'use strict';
-var proxyquire = require('proxyquire');
+var proxyquire = require('proxyquire'),
+    Board;
 
 describe('Board', function() {
-    var Board;
-
     beforeEach(function() {
         Board = require('../board');
     });

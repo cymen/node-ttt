@@ -1,9 +1,9 @@
 'use strict';
+var scorer = require('../scorer'),
+    Board = require('../board/board');
+
 
 describe('scorer', function() {
-    var scorer = require('../scorer'),
-        Board = require('../board/board');
-
     describe('is_tied', function() {
         it('can identify a board as tied', function() {
             var board = new Board([

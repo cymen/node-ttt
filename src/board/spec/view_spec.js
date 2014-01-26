@@ -3,10 +3,6 @@
 var view = require('../view');
 
 describe('view', function() {
-    beforeEach(function() {
-        spyOn(console, 'log');
-    });
-
     it('can format header row', function() {
         expect(view.header([1, 2, 3])).toBe('1    |2    |3');
     });
