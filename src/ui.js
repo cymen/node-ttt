@@ -9,6 +9,7 @@ module.exports = {
     },
 
     play_again: function() {
+        console.log();
         return prompter.prompt('Play again', ['y', 'n']);
     },
 
