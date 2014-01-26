@@ -2,11 +2,48 @@
 
 ## Initial setup
 
-    // install node: http://nodejs.org/download/
-    // then run:
+### Install Node.js
+
+I used homebrew on OSX:
+
+    brew install nodejs
+
+See the Node.js website for other ways to install it.
+
+### Clone the repo
+
+    git clone git@github.com:cymen/node-ttt.git
+
+### Install the node modules
+
     npm install
 
-## To run the tests:
+## Running it
+
+## Tests
 
     grunt
 
+## Game
+
+In root directory of cloned repo:
+
+  ./game.sh
+
+Or:
+
+  node src/main.js
+
+## External packages (npm)
+
+### single-prompt
+
+I wrote a prompter for node as it is a bit ugly how it all works to get input
+on the console. This has been released as a separate node module (npm) with
+the source here:
+
+https://github.com/cymen/node-single-prompt
+
+### Q
+
+Q is a tool for making and composing asynchronous promises in JavaScript.
