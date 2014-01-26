@@ -79,7 +79,6 @@ module.exports = {
             if (alpha >= beta) {
                 return alpha;
             }
-
         });
 
         return bestWeight;

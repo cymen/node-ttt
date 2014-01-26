@@ -27,6 +27,48 @@ describe('computer', function() {
         });
     });
 
+    describe('analysis', function() {
+        it('returns 0 if the board is tied', function() {
+            var board = new Board([
+                'x', 'o', 'x',
+                'o', 'o', 'x',
+                'x', 'x', 'o'
+            ]);
+
+            var result = computer.analysis(board, 'x', 5);
+
+            expect(result).toBe(0);
+        });
+
+        it('returns a positive height if player is the winner', function() {
+            var player = 'x',
+                board = new Board([
+                    'x', 'o', 'x',
+                    'o', 'x', 'o',
+                    'x', 'x', 'o'
+                ]),
+                height = 5;
+
+            var result = computer.analysis(board, player, height);
+
+            expect(result).toBe(5);
+        });
+
+        it('returns a negative height if player is the loser', function() {
+            var player = 'o',
+                board = new Board([
+                    'x', 'o', 'x',
+                    'o', 'x', 'o',
+                    'x', 'x', 'o'
+                ]),
+                height = 13;
+
+            var result = computer.analysis(board, player, height);
+
+            expect(result).toBe(-13);
+        });
+    });
+
     describe('best_choices', function() {
         it('should always choose one of 1, 3, 5, 7, 9 on an empty board', function() {
             var board = new Board();
