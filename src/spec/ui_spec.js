@@ -1,12 +1,25 @@
 'use strict';
 
-var prompter = require('single-prompt');
+var prompter = require('single-prompt'),
+    proxyquire = require('proxyquire'),
+    ui = require('../ui');
 
 describe('user interface', function() {
-    var ui = require('../ui');
-
     beforeEach(function() {
         spyOn(console, 'log');
+    });
+
+    describe('ending', function() {
+        it('prints the board and the ending', function() {
+            var rowsSpy = jasmine.createSpy().andReturn([]);
+
+            ui.ending({
+                horizontal_rows: rowsSpy
+            }, 'abc is xyz!');
+
+            expect(console.log).toHaveBeenCalledWith('abc is xyz!');
+            expect(rowsSpy).toHaveBeenCalled();
+        });
     });
 
     describe('greeting', function() {
@@ -50,6 +63,34 @@ describe('user interface', function() {
                     expect('reject').toBe('not happening');
                 }
             );
+        });
+    });
+
+    describe('print_board', function() {
+        it('gets the rows from the board', function() {
+            var rowsSpy = jasmine.createSpy().andReturn([]);
+
+            ui.print_board({
+                horizontal_rows: rowsSpy
+            });
+
+            expect(rowsSpy).toHaveBeenCalled();
+        });
+
+        it('prints the view', function() {
+            var rowsSpy = jasmine.createSpy().andReturn([]),
+                viewBoardSpy = jasmine.createSpy().andReturn('THE VIEW');
+            var ui = proxyquire('../ui', {
+                './board/view': {
+                    board: viewBoardSpy
+                }
+            });
+
+            ui.print_board({
+                horizontal_rows: rowsSpy
+            });
+
+            expect(console.log).toHaveBeenCalledWith('THE VIEW');
         });
     });
 });
