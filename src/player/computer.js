@@ -25,7 +25,7 @@ module.exports = {
         board.empty_cells().forEach(function(cell) {
             board.set(cell, myMark);
 
-            result = -self.negamax(board, self.opponent(myMark), board.CELL_COUNT);
+            result = -self.negamax(board, self.opponent(myMark), board.CELL_COUNT, -Infinity, Infinity);
             if (result > bestResult) {
                 bestResult = result;
             }
@@ -53,7 +53,7 @@ module.exports = {
         return 0;
     },
 
-    negamax: function(board, player, height) {
+    negamax: function(board, player, height, alpha, beta) {
         var self = this,
             bestWeight = -Infinity,
             playResult,
@@ -66,10 +66,20 @@ module.exports = {
         board.empty_cells().forEach(function(cell) {
             board.set(cell, player);
 
-            playResult = -self.negamax(board, self.opponent(player), height - 1);
-            bestWeight = Math.max(playResult, bestWeight);
+            playResult = -self.negamax(board, self.opponent(player), height - 1, -beta, -alpha);
 
             board.unset(cell);
+
+            bestWeight = Math.max(playResult, bestWeight);
+
+            if (playResult > alpha) {
+                alpha = playResult;
+            }
+
+            if (alpha >= beta) {
+                return alpha;
+            }
+
         });
 
         return bestWeight;
