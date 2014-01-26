@@ -37,13 +37,13 @@ describe('printer', function() {
         expect(console.log).toHaveBeenCalledWith('  a  |     |  c  ');
     });
 
-    it('can print a bunch of rows', function() {
+    it('can print a board', function() {
         var output = [];
         console.log.andCallFake(function(line) {
             output.push(line);
         });
 
-        print.rows([
+        print.board([
             ['a', 'b', 'c'],
             ['d', 'e', 'f'],
             ['g', 'h', 'i']

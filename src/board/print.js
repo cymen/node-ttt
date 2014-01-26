@@ -21,7 +21,7 @@ module.exports = {
         console.log('  ' + row.join('  |  ') + '  ');
     },
 
-    rows: function(rows) {
+    board: function(rows) {
         var header = 0;
         for (var i = 0; i < rows.length; i++) {
             this.header([++header, ++header, ++header]);
