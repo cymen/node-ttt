@@ -5,12 +5,13 @@ var Board = require('../../board/board'),
 
 describe('next open player', function() {
     it('picks the first open cell', function(done) {
-        next_open
-            .play(new Board())
-            .then(function(choice) {
-                expect(choice).toBe(1);
-                done();
-            });
+        var board = new Board();
+
+        var promise = next_open.play(board);
+
+        expect(promise).toHaveBeenResolvedWith(done, function(choice) {
+            expect(choice).toBe(1);
+        });
     });
 
     it('has a type of computer', function() {

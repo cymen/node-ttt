@@ -22,16 +22,9 @@ describe('computer', function() {
 
         var promise = computer.play(board);
 
-        promise.then(
-            function(move) {
-                expect(move).toBe(5);
-                done();
-            },
-            function() {
-                expect('promise').toBe('resolved');
-                done();
-            }
-        );
+        expect(promise).toHaveBeenResolvedWith(done, function(move) {
+            expect(move).toBe(5);
+        });
     });
 
     describe('best_choices', function() {

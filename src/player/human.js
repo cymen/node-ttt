@@ -1,11 +1,11 @@
 'use strict';
 
 var Q = require('q'),
-    prompter = require('single-prompt');
+    ui = require('../ui');
 
 module.exports = {
     play: function(board) {
-        return prompter.prompt('Choose a space', board.empty_cells());
+        return ui.player_choose_cell(board.empty_cells());
     },
 
     type: 'human'

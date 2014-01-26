@@ -1,4 +1,5 @@
 'use strict';
+require('promise-matchers');
 
 var prompter = require('single-prompt'),
     proxyquire = require('proxyquire'),
@@ -46,6 +47,20 @@ describe('user interface', function() {
                 }
             );
         });
+
+        it('exits the game if the player presses ctrl-c', function(done) {
+            spyOn(process, 'exit');
+            var promise = ui.play_again();
+
+            prompter.fakeKeypress('c', {
+                name: 'c',
+                ctrl: true
+            });
+
+            expect(promise).toHaveBeenResolvedWith(done, function() {
+                expect(process.exit).toHaveBeenCalledWith(1);
+            });
+        });
     });
 
     describe('player_choice', function() {
@@ -63,6 +78,46 @@ describe('user interface', function() {
                     expect('reject').toBe('not happening');
                 }
             );
+        });
+
+        it('exits the game if the player presses ctrl-c', function(done) {
+            spyOn(process, 'exit');
+            var promise = ui.player_choice();
+
+            prompter.fakeKeypress('c', {
+                name: 'c',
+                ctrl: true
+            });
+
+            expect(promise).toHaveBeenResolvedWith(done, function() {
+                expect(process.exit).toHaveBeenCalledWith(1);
+            });
+        });
+    });
+
+    describe('player_choose_cell', function() {
+        it('prompts the player to choose a cell', function(done) {
+            var promise = ui.player_choose_cell([1, 2, 3]);
+
+            prompter.fakeKeypress(3);
+
+            expect(promise).toHaveBeenResolvedWith(done, function(key) {
+                expect(key).toBe(3);
+            });
+        });
+
+        it('exits the game if the player presses ctrl-c', function(done) {
+            spyOn(process, 'exit');
+            var promise = ui.player_choose_cell([1, 2, 3]);
+
+            prompter.fakeKeypress('c', {
+                name: 'c',
+                ctrl: true
+            });
+
+            expect(promise).toHaveBeenResolvedWith(done, function() {
+                expect(process.exit).toHaveBeenCalledWith(1);
+            });
         });
     });
 
