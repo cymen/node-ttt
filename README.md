@@ -28,11 +28,11 @@ See the Node.js website for other ways to install it.
 
 In root directory of cloned repo:
 
-  ./game.sh
+    ./game.sh
 
 Or:
 
-  node src/main.js
+    node src/main.js
 
 ## External packages (npm)
 
@@ -47,3 +47,5 @@ https://github.com/cymen/node-single-prompt
 ### Q
 
 Q is a tool for making and composing asynchronous promises in JavaScript.
+
+https://github.com/kriskowal/q/tree/v1
