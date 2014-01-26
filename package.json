@@ -3,7 +3,7 @@
     "description": "console tic-tac-toe game",
     "version": "0.0.1",
     "dependencies": {
-        "single-prompt": "0.2.1",
+        "single-prompt": "0.2.2",
         "q": "1.0.0"
     },
     "engines": {
