@@ -2,15 +2,15 @@
 
 module.exports = {
     header: function(labels) {
-        console.log(labels.join('    |'));
+        return labels.join('    |');
     },
 
     divider: function() {
-        console.log('_____|_____|_____');
+        return '_____|_____|_____';
     },
 
     footer: function() {
-        console.log('     |     |     ');
+        return '     |     |     ';
     },
 
     row: function(row) {
@@ -18,20 +18,24 @@ module.exports = {
             row[i] = row[i] || ' ';
         }
 
-        console.log('  ' + row.join('  |  ') + '  ');
+        return '  ' + row.join('  |  ') + '  ';
     },
 
     board: function(rows) {
-        var header = 0;
+        var lines = [],
+            header = 0;
+
         for (var i = 0; i < rows.length; i++) {
-            this.header([++header, ++header, ++header]);
-            this.row(rows[i]);
+            lines.push(this.header([++header, ++header, ++header]));
+            lines.push(this.row(rows[i]));
 
             if (i !== rows.length - 1) {
-                this.divider();
+                lines.push(this.divider());
             } else {
-                this.footer();
+                lines.push(this.footer());
             }
         }
+
+        return lines.join('\n');
     }
 };
