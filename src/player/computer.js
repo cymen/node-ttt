@@ -1,7 +1,6 @@
 'use strict';
 var Q = require('q'),
     scorer = require('../scorer'),
-    print = require('../board/print'),
     OPTIMAL_CELLS = [1, 3, 5, 7, 9];
 
 module.exports = {
