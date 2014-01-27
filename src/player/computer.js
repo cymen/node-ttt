@@ -7,8 +7,9 @@ var Q = require('q'),
 module.exports = {
     play: function(board) {
         var moves = this.get_best_moves(board),
-            move = moves[Math.floor(Math.random() * moves.length)];
-        return Q.resolve(move);
+            random = Math.floor(Math.random() * moves.length);
+
+        return Q.resolve(moves[random]);
     },
 
     get_best_moves: function(board) {
