@@ -13,25 +13,43 @@ describe('user interface', function() {
         spyOn(console, 'log');
     });
 
-    describe('ending', function() {
-        it('prints the board and the ending', function() {
-            var rowsSpy = jasmine.createSpy().andReturn([]);
+    it('prints the board and the ending', function() {
+        var mockBoard = {
+            horizontalRows: jasmine.createSpy().andReturn([]),
+        };
 
-            ui.ending({
-                horizontalRows: rowsSpy
-            }, 'abc is xyz!');
+        ui.ending(mockBoard, 'abc is xyz!');
 
-            expect(console.log).toHaveBeenCalledWith('abc is xyz!');
-            expect(rowsSpy).toHaveBeenCalled();
-        });
+        expect(console.log).toHaveBeenCalledWith('abc is xyz!');
+        expect(mockBoard.horizontalRows).toHaveBeenCalled();
     });
 
-    describe('greeting', function() {
-        it('prints the game name', function() {
-            ui.greeting();
+    it('prints the end of game tied message', function() {
+        var mockBoard = {
+            horizontalRows: jasmine.createSpy().andReturn([]),
+        };
 
-            expect(console.log).toHaveBeenCalledWith('Tic-Tac-Toe');
-        });
+        ui.endingTied(mockBoard);
+
+        expect(console.log).toHaveBeenCalledWith('Tied!');
+        expect(mockBoard.horizontalRows).toHaveBeenCalled();
+    });
+
+    it('prints the end of game winner message', function() {
+        var mockBoard = {
+            horizontalRows: jasmine.createSpy().andReturn([]),
+        };
+
+        ui.endingWinner(mockBoard, 'x');
+
+        expect(console.log).toHaveBeenCalledWith('x wins!');
+        expect(mockBoard.horizontalRows).toHaveBeenCalled();
+    });
+
+    it('prints the game name', function() {
+        ui.greeting();
+
+        expect(console.log).toHaveBeenCalledWith('Tic-Tac-Toe');
     });
 
     describe('playAgain', function() {

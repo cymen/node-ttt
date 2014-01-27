@@ -12,6 +12,14 @@ module.exports = {
         console.log();
     },
 
+    endingTied: function(board) {
+        this.ending(board, 'Tied!');
+    },
+
+    endingWinner: function(board, winner) {
+        this.ending(board, winner + ' wins!');
+    },
+
     getPlayerMove: function(cells) {
         return prompter
             .prompt('Choose a space', cells)

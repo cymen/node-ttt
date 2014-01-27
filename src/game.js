@@ -8,13 +8,13 @@ var Q = require('q'),
 
 module.exports = {
     getMove: function(board, player_x, player_o) {
-        var current_player = (scorer.turn(board) === x) ? player_x : player_o;
+        var currentPlayer = (scorer.turn(board) === x) ? player_x : player_o;
 
-        if (current_player.type === 'human') {
+        if (currentPlayer.type === 'human') {
             ui.printBoard(board);
         }
 
-        return current_player.play(board);
+        return currentPlayer.play(board);
     },
 
     play: function(board, player_x, player_o) {
@@ -27,8 +27,11 @@ module.exports = {
                     if (!scorer.isOver(board)) {
                         resolve(self.play(board, player_x, player_o));
                     } else {
-                        var ending_message = (scorer.isTied(board)) ? 'Tied!' : scorer.winner(board) + ' wins!';
-                        ui.ending(board, ending_message);
+                        if (scorer.isTied(board)) {
+                            ui.endingTied(board);
+                        } else {
+                            ui.endingWinner(board, scorer.winner(board));
+                        }
                         resolve();
                     }
                 });
