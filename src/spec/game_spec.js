@@ -39,7 +39,7 @@ describe('game', function() {
             player_o = mockPlayer(),
             board = new Board();
 
-        var promise = game.get_play(board, player_x, player_o);
+        var promise = game.getMove(board, player_x, player_o);
 
         expect(promise).toHaveBeenResolvedWith(done, function(choice) {
             expect(player_x.play).toHaveBeenCalledWith(board);

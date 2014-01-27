@@ -7,7 +7,7 @@ var Q = require('q'),
     x = playerConstants.X;
 
 module.exports = {
-    get_play: function(board, player_x, player_o) {
+    getMove: function(board, player_x, player_o) {
         var current_player = (scorer.turn(board) === x) ? player_x : player_o;
 
         if (current_player.type === 'human') {
@@ -21,7 +21,7 @@ module.exports = {
         var self = this;
         return Q.promise(function(resolve) {
             self
-                .get_play(board, player_x, player_o)
+                .getMove(board, player_x, player_o)
                 .then(function(choice) {
                     board.set(choice, scorer.turn(board));
                     if (!scorer.isOver(board)) {
