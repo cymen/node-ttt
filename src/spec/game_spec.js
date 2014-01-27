@@ -1,4 +1,6 @@
 'use strict';
+require('promise-matchers');
+
 var Q = require('q'),
     game = require('../game'),
     Board = require('../board/board'),
@@ -13,19 +15,12 @@ describe('game', function() {
 
         var promise = game.play(board, player_x, player_o);
 
-        promise.then(
-            function() {
-                expect(scorer.winner(board)).toBe('x');
-                expect(board.horizontal_rows()).toContain(['x', 'o', 'x']);
-                expect(board.horizontal_rows()).toContain(['o', 'x', 'o']);
-                expect(board.horizontal_rows()).toContain(['x', undefined, undefined]);
-                done();
-            },
-            function(error) {
-                expect('reject').toBe('not happening');
-                done();
-            }
-        );
+        expect(promise).toHaveBeenResolvedWith(done, function() {
+            expect(scorer.winner(board)).toBe('x');
+            expect(board.horizontal_rows()).toContain(['x', 'o', 'x']);
+            expect(board.horizontal_rows()).toContain(['o', 'x', 'o']);
+            expect(board.horizontal_rows()).toContain(['x', undefined, undefined]);
+        });
     });
 
     it('prompts x for a cell on an empty board', function(done) {
@@ -42,17 +37,10 @@ describe('game', function() {
 
         var promise = game.get_play(board, player_x, player_o);
 
-        promise.then(
-            function(choice) {
-                expect(player_x.play).toHaveBeenCalledWith(board);
-                expect(choice).toBe(1);
-                expect(player_o.play).not.toHaveBeenCalled();
-                done();
-            },
-            function(error) {
-                expect('reject').toBe('not happening');
-                done();
-            }
-        );
+        expect(promise).toHaveBeenResolvedWith(done, function(choice) {
+            expect(player_x.play).toHaveBeenCalledWith(board);
+            expect(choice).toBe(1);
+            expect(player_o.play).not.toHaveBeenCalled();
+        });
     });
 });
