@@ -18,7 +18,7 @@ module.exports = {
         return 0;
     },
 
-    get_best_moves: function(board) {
+    getBestMoves: function(board) {
         var self = this,
             weights = {},
             myMark = scorer.turn(board),
@@ -83,7 +83,7 @@ module.exports = {
     },
 
     play: function(board) {
-        var moves = this.get_best_moves(board),
+        var moves = this.getBestMoves(board),
             random = Math.floor(Math.random() * moves.length);
 
         return Q.resolve(moves[random]);

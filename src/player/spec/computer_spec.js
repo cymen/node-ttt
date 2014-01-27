@@ -76,7 +76,7 @@ describe('computer', function() {
         it('should always choose one of 1, 3, 5, 7, 9 on an empty board', function() {
             var board = new Board();
 
-            var best_choices = computer.get_best_moves(board);
+            var best_choices = computer.getBestMoves(board);
 
             expect(best_choices).toEqual([1, 3, 5, 7, 9]);
         });
@@ -88,7 +88,7 @@ describe('computer', function() {
                 _, _, o
             ]);
 
-            var best_choices = computer.get_best_moves(board);
+            var best_choices = computer.getBestMoves(board);
 
             expect(best_choices).toEqual([1]);
         });
@@ -100,7 +100,7 @@ describe('computer', function() {
                 o, _, _
             ]);
 
-            var best_choices = computer.get_best_moves(board);
+            var best_choices = computer.getBestMoves(board);
 
             expect(best_choices).toEqual([3]);
         });
@@ -112,7 +112,7 @@ describe('computer', function() {
                 _, _, o
             ]);
 
-            var best_choices = computer.get_best_moves(board);
+            var best_choices = computer.getBestMoves(board);
 
             expect(best_choices).toEqual([3, 7]);
         });
@@ -124,7 +124,7 @@ describe('computer', function() {
                 x, _, o
             ]);
 
-            var best_choices = computer.get_best_moves(board);
+            var best_choices = computer.getBestMoves(board);
 
             expect(best_choices).toEqual([3]);
         });
@@ -136,7 +136,7 @@ describe('computer', function() {
                 o, _, o
             ]);
 
-            var best_choices = computer.get_best_moves(board);
+            var best_choices = computer.getBestMoves(board);
 
             expect(best_choices).toEqual([2]);
         });
