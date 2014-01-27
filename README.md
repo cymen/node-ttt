@@ -24,6 +24,10 @@ See the Node.js website for other ways to install it.
 
     grunt
 
+or just the tests:
+
+    npm test
+
 ## Game
 
 In root directory of cloned repo:
