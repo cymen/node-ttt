@@ -37,15 +37,9 @@ describe('user interface', function() {
 
             prompter.fakeKeypress('n');
 
-            promise.then(
-                function(choice) {
-                    expect(choice).toBe('n');
-                    done();
-                },
-                function() {
-                    expect('reject').toBe('not happening');
-                }
-            );
+            expect(promise).toHaveBeenResolvedWith(done, function(choice) {
+                expect(choice).toBe(false);
+            });
         });
 
         it('exits the game if the player presses ctrl-c', function(done) {
@@ -69,15 +63,9 @@ describe('user interface', function() {
 
             prompter.fakeKeypress('o');
 
-            promise.then(
-                function(choice) {
-                    expect(choice).toBe('o');
-                    done();
-                },
-                function() {
-                    expect('reject').toBe('not happening');
-                }
-            );
+            expect(promise).toHaveBeenResolvedWith(done, function(choice) {
+                expect(choice).toBe('o');
+            });
         });
 
         it('exits the game if the player presses ctrl-c', function(done) {

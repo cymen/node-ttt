@@ -31,8 +31,8 @@ var loop = function() {
                     .then(function() {
                         ui
                             .play_again()
-                            .then(function(choice) {
-                                if (choice === 'y') {
+                            .then(function(playAgain) {
+                                if (playAgain) {
                                     resolve(loop());
                                 } else {
                                     resolve();

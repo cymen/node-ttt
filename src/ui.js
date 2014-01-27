@@ -18,6 +18,9 @@ module.exports = {
     play_again: function() {
         return prompter
             .prompt('Play again', ['y', 'n'])
+            .then(function(choice) {
+                return choice === 'y';
+            })
             .fail(function() {
                 process.exit(1);
             });

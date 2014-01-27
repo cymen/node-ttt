@@ -13,13 +13,13 @@ describe('main', function() {
 
     beforeEach(function() {
         mockGame = {
-            play: jasmine.createSpy('game.play')
+            play: jasmine.createSpy('game.play').andReturn(Q.resolve())
         };
 
         mockUI = {
             greeting: jasmine.createSpy('ui.greeting'),
             player_choice: jasmine.createSpy('ui.player_choice'),
-            play_again: jasmine.createSpy('ui.play_again')
+            play_again: jasmine.createSpy('ui.play_again').andReturn(Q.resolve(false))
         };
 
         makeMain = function() {
@@ -39,10 +39,7 @@ describe('main', function() {
     });
 
     it('asks the player to choose x or o and starts game with computer as opposite player', function(done) {
-        var humanPlayerChoice = 'o';
-        mockGame.play.andReturn(Q.resolve());
-        mockUI.player_choice.andReturn(Q.resolve(humanPlayerChoice));
-        mockUI.play_again.andReturn(Q.resolve('n'));
+        mockUI.player_choice.andReturn(Q.resolve('o'));
 
         var promise = makeMain();
 
@@ -53,10 +50,7 @@ describe('main', function() {
     });
 
     it('prompts the player to play again after the game is finished', function(done) {
-        var humanPlayerChoice = 'x';
-        mockGame.play.andReturn(Q.resolve());
-        mockUI.player_choice.andReturn(Q.resolve(humanPlayerChoice));
-        mockUI.play_again.andReturn(Q.resolve('n'));
+        mockUI.player_choice.andReturn(Q.resolve('x'));
 
         var promise = makeMain();
 
@@ -66,15 +60,12 @@ describe('main', function() {
     });
 
     it('calls process.exit to end the game', function(done) {
-        var humanPlayerChoice = 'x';
-        mockGame.play.andReturn(Q.resolve());
-        mockUI.player_choice.andReturn(Q.resolve(humanPlayerChoice));
-        mockUI.play_again.andReturn(Q.resolve('n'));
+        mockUI.player_choice.andReturn(Q.resolve('x'));
 
         var promise = makeMain();
 
         expect(promise).toHaveBeenResolvedWith(done, function() {
-            expect(mockUI.play_again).toHaveBeenCalled();
+            expect(process.exit).toHaveBeenCalled();
         });
     });
 });
