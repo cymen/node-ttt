@@ -21,8 +21,8 @@ describe('main', function() {
 
         mockUI = {
             greeting: jasmine.createSpy('ui.greeting'),
-            player_choice: jasmine.createSpy('ui.player_choice'),
-            play_again: jasmine.createSpy('ui.play_again').andReturn(Q.resolve(false))
+            playerChoice: jasmine.createSpy('ui.playerChoice'),
+            playAgain: jasmine.createSpy('ui.playAgain').andReturn(Q.resolve(false))
         };
 
         makeMain = function() {
@@ -42,28 +42,28 @@ describe('main', function() {
     });
 
     it('asks the player to choose x or o and starts game with computer as opposite player', function(done) {
-        mockUI.player_choice.andReturn(Q.resolve(o));
+        mockUI.playerChoice.andReturn(Q.resolve(o));
 
         var promise = makeMain();
 
         expect(promise).toHaveBeenResolvedWith(done, function() {
-            expect(mockUI.player_choice).toHaveBeenCalled();
+            expect(mockUI.playerChoice).toHaveBeenCalled();
             expect(mockGame.play).toHaveBeenCalledWith(jasmine.any(Object), computer, human);
         });
     });
 
     it('prompts the player to play again after the game is finished', function(done) {
-        mockUI.player_choice.andReturn(Q.resolve(x));
+        mockUI.playerChoice.andReturn(Q.resolve(x));
 
         var promise = makeMain();
 
         expect(promise).toHaveBeenResolvedWith(done, function() {
-            expect(mockUI.play_again).toHaveBeenCalled();
+            expect(mockUI.playAgain).toHaveBeenCalled();
         });
     });
 
     it('calls process.exit to end the game', function(done) {
-        mockUI.player_choice.andReturn(Q.resolve(x));
+        mockUI.playerChoice.andReturn(Q.resolve(x));
 
         var promise = makeMain();
 

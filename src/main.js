@@ -13,7 +13,7 @@ ui.greeting();
 var loop = function() {
     return Q.promise(function(resolve) {
         ui
-            .player_choice()
+            .playerChoice()
             .then(function(choice) {
                 var board = new Board(),
                     player_x,
@@ -31,7 +31,7 @@ var loop = function() {
                     .play(board, player_x, player_o)
                     .then(function() {
                         ui
-                            .play_again()
+                            .playAgain()
                             .then(function(playAgain) {
                                 if (playAgain) {
                                     resolve(loop());

@@ -11,7 +11,7 @@ module.exports = {
         var current_player = (scorer.turn(board) === x) ? player_x : player_o;
 
         if (current_player.type === 'human') {
-            ui.print_board(board);
+            ui.printBoard(board);
         }
 
         return current_player.play(board);

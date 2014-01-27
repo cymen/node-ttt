@@ -7,9 +7,17 @@ var prompter = require('single-prompt'),
 
 module.exports = {
     ending: function(board, message) {
-        this.print_board(board);
+        this.printBoard(board);
         console.log(message);
         console.log();
+    },
+
+    getPlayerMove: function(cells) {
+        return prompter
+            .prompt('Choose a space', cells)
+            .fail(function() {
+                process.exit(1);
+            });
     },
 
     greeting: function() {
@@ -18,7 +26,7 @@ module.exports = {
         console.log();
     },
 
-    play_again: function() {
+    playAgain: function() {
         return prompter
             .prompt('Play again', ['y', 'n'])
             .then(function(choice) {
@@ -29,7 +37,7 @@ module.exports = {
             });
     },
 
-    player_choice: function() {
+    playerChoice: function() {
         return prompter
             .prompt('Would you like to be x or o (x goes first)', [x, o])
             .fail(function() {
@@ -37,15 +45,7 @@ module.exports = {
             });
     },
 
-    player_choose_cell: function(cells) {
-        return prompter
-            .prompt('Choose a space', cells)
-            .fail(function() {
-                process.exit(1);
-            });
-    },
-
-    print_board: function(board) {
+    printBoard: function(board) {
         console.log();
         console.log(view.board(board.horizontalRows()));
     }

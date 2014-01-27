@@ -34,9 +34,9 @@ describe('user interface', function() {
         });
     });
 
-    describe('play_again', function() {
+    describe('playAgain', function() {
         it('asks the player if they would like to play again', function(done) {
-            var promise = ui.play_again();
+            var promise = ui.playAgain();
 
             prompter.fakeKeypress('n');
 
@@ -47,7 +47,7 @@ describe('user interface', function() {
 
         it('exits the game if the player presses ctrl-c', function(done) {
             spyOn(process, 'exit');
-            var promise = ui.play_again();
+            var promise = ui.playAgain();
 
             prompter.fakeKeypress('c', {
                 name: 'c',
@@ -60,9 +60,9 @@ describe('user interface', function() {
         });
     });
 
-    describe('player_choice', function() {
+    describe('playerChoice', function() {
         it('prompts the player to choose x or o', function(done) {
-            var promise = ui.player_choice();
+            var promise = ui.playerChoice();
 
             prompter.fakeKeypress(o);
 
@@ -73,7 +73,7 @@ describe('user interface', function() {
 
         it('exits the game if the player presses ctrl-c', function(done) {
             spyOn(process, 'exit');
-            var promise = ui.player_choice();
+            var promise = ui.playerChoice();
 
             prompter.fakeKeypress('c', {
                 name: 'c',
@@ -86,9 +86,9 @@ describe('user interface', function() {
         });
     });
 
-    describe('player_choose_cell', function() {
+    describe('getPlayerMove', function() {
         it('prompts the player to choose a cell', function(done) {
-            var promise = ui.player_choose_cell([1, 2, 3]);
+            var promise = ui.getPlayerMove([1, 2, 3]);
 
             prompter.fakeKeypress(3);
 
@@ -99,7 +99,7 @@ describe('user interface', function() {
 
         it('exits the game if the player presses ctrl-c', function(done) {
             spyOn(process, 'exit');
-            var promise = ui.player_choose_cell([1, 2, 3]);
+            var promise = ui.getPlayerMove([1, 2, 3]);
 
             prompter.fakeKeypress('c', {
                 name: 'c',
@@ -112,11 +112,11 @@ describe('user interface', function() {
         });
     });
 
-    describe('print_board', function() {
+    describe('printBoard', function() {
         it('gets the rows from the board', function() {
             var rowsSpy = jasmine.createSpy().andReturn([]);
 
-            ui.print_board({
+            ui.printBoard({
                 horizontalRows: rowsSpy
             });
 
@@ -132,7 +132,7 @@ describe('user interface', function() {
                 }
             });
 
-            ui.print_board({
+            ui.printBoard({
                 horizontalRows: rowsSpy
             });
 
