@@ -1,7 +1,10 @@
 'use strict';
 var computer = require('../computer'),
     Board = require('../../board/board'),
-    ___;
+    constants = require('../constants'),
+    x = constants.X,
+    o = constants.O,
+    _;
 
 describe('computer', function() {
     it('has a type', function() {
@@ -9,15 +12,15 @@ describe('computer', function() {
     });
 
     it('can determine the opponent', function() {
-        expect(computer.opponent('x')).toBe('o');
-        expect(computer.opponent('o')).toBe('x');
+        expect(computer.opponent(x)).toBe(o);
+        expect(computer.opponent(o)).toBe(x);
     });
 
     it('returns a promise', function(done) {
         var board = new Board([
-            'x', 'o', 'x',
-            'o', ___, ___,
-            'x', ___, 'o'
+            x, o, x,
+            o, _, _,
+            x, _, o
         ]);
 
         var promise = computer.play(board);
@@ -30,22 +33,22 @@ describe('computer', function() {
     describe('analysis', function() {
         it('returns 0 if the board is tied', function() {
             var board = new Board([
-                'x', 'o', 'x',
-                'o', 'o', 'x',
-                'x', 'x', 'o'
+                x, o, x,
+                o, o, x,
+                x, x, o
             ]);
 
-            var result = computer.analysis(board, 'x', 5);
+            var result = computer.analysis(board, x, 5);
 
             expect(result).toBe(0);
         });
 
         it('returns a positive height if player is the winner', function() {
-            var player = 'x',
+            var player = x,
                 board = new Board([
-                    'x', 'o', 'x',
-                    'o', 'x', 'o',
-                    'x', 'x', 'o'
+                    x, o, x,
+                    o, x, o,
+                    x, x, o
                 ]),
                 height = 5;
 
@@ -55,11 +58,11 @@ describe('computer', function() {
         });
 
         it('returns a negative height if player is the loser', function() {
-            var player = 'o',
+            var player = o,
                 board = new Board([
-                    'x', 'o', 'x',
-                    'o', 'x', 'o',
-                    'x', 'x', 'o'
+                    x, o, x,
+                    o, x, o,
+                    x, x, o
                 ]),
                 height = 13;
 
@@ -80,9 +83,9 @@ describe('computer', function() {
 
         it('blocks a win by opponent', function() {
             var board = new Board([
-                ___, 'x', 'x',
-                ___, 'o', 'x',
-                ___, ___, 'o'
+                _, x, x,
+                _, o, x,
+                _, _, o
             ]);
 
             var best_choices = computer.get_best_moves(board);
@@ -92,9 +95,9 @@ describe('computer', function() {
 
         it('blocks a win by opponent', function() {
             var board = new Board([
-                'x', ___, ___,
-                'x', 'o', ___,
-                'o', ___, ___
+                x, _, _,
+                x, o, _,
+                o, _, _
             ]);
 
             var best_choices = computer.get_best_moves(board);
@@ -104,9 +107,9 @@ describe('computer', function() {
 
         it('attempts to setup a fork', function() {
             var board = new Board([
-                'x', ___, ___,
-                ___, ___, ___,
-                ___, ___, 'o'
+                x, _, _,
+                _, _, _,
+                _, _, o
             ]);
 
             var best_choices = computer.get_best_moves(board);
@@ -116,9 +119,9 @@ describe('computer', function() {
 
         it('goes for the fork', function() {
             var board = new Board([
-                'x', ___, ___,
-                'o', ___, ___,
-                'x', ___, 'o'
+                x, _, _,
+                o, _, _,
+                x, _, o
             ]);
 
             var best_choices = computer.get_best_moves(board);
@@ -128,9 +131,9 @@ describe('computer', function() {
 
         it('picks a win over blocking the opponent', function() {
             var board = new Board([
-                'x', ___, 'x',
-                ___, ___, ___,
-                'o', ___, 'o'
+                x, _, x,
+                _, _, _,
+                o, _, o
             ]);
 
             var best_choices = computer.get_best_moves(board);

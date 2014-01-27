@@ -5,7 +5,11 @@ var Q = require('q'),
     game = require('../game'),
     Board = require('../board/board'),
     next_open_player = require('../player/next_open'),
-    scorer = require('../scorer');
+    scorer = require('../scorer'),
+    playerConstants = require('../player/constants'),
+    x = playerConstants.X,
+    o = playerConstants.O,
+    _;
 
 describe('game', function() {
     it('plays a game with two players', function(done) {
@@ -16,10 +20,10 @@ describe('game', function() {
         var promise = game.play(board, player_x, player_o);
 
         expect(promise).toHaveBeenResolvedWith(done, function() {
-            expect(scorer.winner(board)).toBe('x');
-            expect(board.horizontal_rows()).toContain(['x', 'o', 'x']);
-            expect(board.horizontal_rows()).toContain(['o', 'x', 'o']);
-            expect(board.horizontal_rows()).toContain(['x', undefined, undefined]);
+            expect(scorer.winner(board)).toBe(x);
+            expect(board.horizontal_rows()).toContain([x, o, x]);
+            expect(board.horizontal_rows()).toContain([o, x, o]);
+            expect(board.horizontal_rows()).toContain([x, _, _]);
         });
     });
 

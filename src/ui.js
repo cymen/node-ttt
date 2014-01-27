@@ -1,5 +1,8 @@
 'use strict';
 var prompter = require('single-prompt'),
+    playerConstants = require('./player/constants'),
+    x = playerConstants.X,
+    o = playerConstants.O,
     view = require('./board/view');
 
 module.exports = {
@@ -28,7 +31,7 @@ module.exports = {
 
     player_choice: function() {
         return prompter
-            .prompt('Would you like to be x or o (x goes first)', ['x', 'o'])
+            .prompt('Would you like to be x or o (x goes first)', [x, o])
             .fail(function() {
                 process.exit(1);
             });

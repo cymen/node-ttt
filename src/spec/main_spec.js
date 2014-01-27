@@ -4,7 +4,10 @@ require('promise-matchers');
 var Q = require('q'),
     proxyquire = require('proxyquire'),
     human = require('../player/human'),
-    computer = require('../player/computer');
+    computer = require('../player/computer'),
+    playerConstants = require('../player/constants'),
+    x = playerConstants.X,
+    o = playerConstants.O;
 
 describe('main', function() {
     var makeMain,
@@ -39,7 +42,7 @@ describe('main', function() {
     });
 
     it('asks the player to choose x or o and starts game with computer as opposite player', function(done) {
-        mockUI.player_choice.andReturn(Q.resolve('o'));
+        mockUI.player_choice.andReturn(Q.resolve(o));
 
         var promise = makeMain();
 
@@ -50,7 +53,7 @@ describe('main', function() {
     });
 
     it('prompts the player to play again after the game is finished', function(done) {
-        mockUI.player_choice.andReturn(Q.resolve('x'));
+        mockUI.player_choice.andReturn(Q.resolve(x));
 
         var promise = makeMain();
 
@@ -60,7 +63,7 @@ describe('main', function() {
     });
 
     it('calls process.exit to end the game', function(done) {
-        mockUI.player_choice.andReturn(Q.resolve('x'));
+        mockUI.player_choice.andReturn(Q.resolve(x));
 
         var promise = makeMain();
 

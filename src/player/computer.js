@@ -1,5 +1,6 @@
 'use strict';
 var Q = require('q'),
+    constants = require('./constants'),
     scorer = require('../scorer'),
     OPTIMAL_CELLS = [1, 3, 5, 7, 9];
 
@@ -83,7 +84,7 @@ module.exports = {
     },
 
     opponent: function(player) {
-        return (player === 'x') ? 'o' : 'x';
+        return (player === constants.X) ? constants.O : constants.X;
     },
 
     type: 'computer'

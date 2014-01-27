@@ -4,6 +4,7 @@ var Q = require('q'),
     Board = require('./board/board'),
     ui = require('./ui'),
     game = require('./game'),
+    playerConstants = require('./player/constants'),
     human = require('./player/human'),
     computer = require('./player/computer');
 
@@ -18,7 +19,7 @@ var loop = function() {
                     player_x,
                     player_o;
 
-                if (choice === 'x') {
+                if (choice === playerConstants.X) {
                     player_x = human;
                     player_o = computer;
                 } else {

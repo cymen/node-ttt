@@ -1,5 +1,8 @@
 'use strict';
 var proxyquire = require('proxyquire'),
+    playerConstants = require('../../player/constants'),
+    x = playerConstants.X,
+    o = playerConstants.O,
     Board;
 
 describe('Board', function() {
@@ -15,11 +18,11 @@ describe('Board', function() {
         });
 
         it('takes an array of values to populate the cells', function() {
-            var board = new Board(['x', 'o', 'x']);
+            var board = new Board([x, o, x]);
 
-            expect(board.get(1)).toEqual('x');
-            expect(board.get(2)).toEqual('o');
-            expect(board.get(3)).toEqual('x');
+            expect(board.get(1)).toEqual(x);
+            expect(board.get(2)).toEqual(o);
+            expect(board.get(3)).toEqual(x);
         });
     });
 
@@ -48,7 +51,7 @@ describe('Board', function() {
 
         it('does not return cell numbers that have been played', function() {
             var board = new Board();
-            board.set(5, 'x');
+            board.set(5, x);
 
             expect(board.empty_cells()).toEqual([1, 2, 3, 4, 6, 7, 8, 9]);
         });
@@ -62,10 +65,10 @@ describe('Board', function() {
         });
 
         it('returns the value for a set cell', function() {
-            var board = new Board(['x', 'o']);
+            var board = new Board([x, o]);
 
-            expect(board.get(1)).toBe('x');
-            expect(board.get(2)).toBe('o');
+            expect(board.get(1)).toBe(x);
+            expect(board.get(2)).toBe(o);
         });
     });
 
@@ -96,9 +99,9 @@ describe('Board', function() {
 
         it('returns true on a full board', function() {
             var board = new Board([
-                'x', 'o', 'x',
-                'x', 'o', 'x',
-                'o', 'x', 'o'
+                x, o, x,
+                x, o, x,
+                o, x, o
             ]);
 
             expect(board.is_full()).toBe(true);
@@ -109,23 +112,23 @@ describe('Board', function() {
         it('can set an empty cell to a value', function() {
             var board = new Board();
 
-            board.set(1, 'x');
+            board.set(1, x);
 
-            expect(board.get(1)).toBe('x');
+            expect(board.get(1)).toBe(x);
         });
 
         it('returns an Error if a cell already has a value', function() {
-            var board = new Board(['x']);
+            var board = new Board([x]);
 
-            expect(board.set(1, 'o')).toMatch(new Error('Cannot set a cell that already has a value'));
+            expect(board.set(1, o)).toMatch(new Error('Cannot set a cell that already has a value'));
         });
     });
 
     describe('unset', function() {
         it('can set a cell back to undefined', function() {
-            var board = new Board(['x']);
+            var board = new Board([x]);
 
-            expect(board.get(1)).toBe('x');
+            expect(board.get(1)).toBe(x);
             board.unset(1);
 
             expect(board.get(1)).toBe(undefined);

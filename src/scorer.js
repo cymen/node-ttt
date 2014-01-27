@@ -1,5 +1,9 @@
 'use strict';
 
+var playerConstants = require('./player/constants'),
+    x = playerConstants.X,
+    o = playerConstants.O;
+
 module.exports = {
     is_tied: function(board) {
         return board.is_full() && !this.is_won(board);
@@ -31,9 +35,9 @@ module.exports = {
     turn: function(board) {
         var empty_cell_count = board.empty_cells().length;
         if (empty_cell_count % 2 === 1) {
-            return 'x';
+            return x;
         } else {
-            return 'o';
+            return o;
         }
     },
 

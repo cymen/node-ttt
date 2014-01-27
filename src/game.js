@@ -1,6 +1,7 @@
 'use strict';
 
 var Q = require('q'),
+    playerConstants = require('./player/constants'),
     scorer = require('./scorer'),
     ui = require('./ui');
 
@@ -26,7 +27,7 @@ module.exports = {
     get_play: function(board, player_x, player_o) {
         var current_player;
 
-        if (scorer.turn(board) === 'x') {
+        if (scorer.turn(board) === playerConstants.X) {
             current_player = player_x;
         } else {
             current_player = player_o;

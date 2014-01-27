@@ -3,7 +3,10 @@ require('promise-matchers');
 
 var prompter = require('single-prompt'),
     proxyquire = require('proxyquire'),
-    ui = require('../ui');
+    ui = require('../ui'),
+    playerConstants = require('../player/constants'),
+    x = playerConstants.X,
+    o = playerConstants.O;
 
 describe('user interface', function() {
     beforeEach(function() {
@@ -61,10 +64,10 @@ describe('user interface', function() {
         it('prompts the player to choose x or o', function(done) {
             var promise = ui.player_choice();
 
-            prompter.fakeKeypress('o');
+            prompter.fakeKeypress(o);
 
             expect(promise).toHaveBeenResolvedWith(done, function(choice) {
-                expect(choice).toBe('o');
+                expect(choice).toBe(o);
             });
         });
 

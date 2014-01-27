@@ -1,6 +1,9 @@
 'use strict';
 var proxyquire = require('proxyquire'),
-    Grid = require('../grid');
+    Grid = require('../grid'),
+    playerConstants = require('../../player/constants'),
+    x = playerConstants.X,
+    o = playerConstants.O;
 
 describe('grid', function() {
     it('is instantiated with a side length', function() {
@@ -36,18 +39,18 @@ describe('grid', function() {
     it('can set a cell to a value identifed by one-based index', function() {
         var grid = new Grid(1);
 
-        grid.set(1, 'x');
+        grid.set(1, x);
 
-        expect(grid.rows()).toContain(['x']);
+        expect(grid.rows()).toContain([x]);
     });
 
     it('can set a cell to a value even if it already has a value', function() {
-        var grid = new Grid(1, ['o']);
+        var grid = new Grid(1, [o]);
 
-        expect(grid.get(1)).toEqual('o');
-        grid.set(1, 'x');
+        expect(grid.get(1)).toEqual(o);
+        grid.set(1, x);
 
-        expect(grid.get(1)).toEqual('x');
+        expect(grid.get(1)).toEqual(x);
     });
 
     it('returns an array of indexes for cells without values', function() {
@@ -57,7 +60,7 @@ describe('grid', function() {
     });
 
     it('correctly identifies a cell set to false to have a value', function() {
-        var grid = new Grid(1, ['x']);
+        var grid = new Grid(1, [x]);
 
         expect(grid.open()).toEqual([]);
     });
