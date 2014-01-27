@@ -1,26 +1,6 @@
 'use strict';
 
 module.exports = {
-    header: function(labels) {
-        return labels.join('    |');
-    },
-
-    divider: function() {
-        return '_____|_____|_____';
-    },
-
-    footer: function() {
-        return '     |     |     ';
-    },
-
-    row: function(row) {
-        for (var i = 0; i < row.length; i++) {
-            row[i] = row[i] || ' ';
-        }
-
-        return '  ' + row.join('  |  ') + '  ';
-    },
-
     board: function(rows) {
         var lines = [],
             header = 0;
@@ -37,5 +17,25 @@ module.exports = {
         }
 
         return lines.join('\n');
+    },
+
+    divider: function() {
+        return '_____|_____|_____';
+    },
+
+    footer: function() {
+        return '     |     |     ';
+    },
+
+    header: function(labels) {
+        return labels.join('    |');
+    },
+
+    row: function(row) {
+        for (var i = 0; i < row.length; i++) {
+            row[i] = row[i] || ' ';
+        }
+
+        return '  ' + row.join('  |  ') + '  ';
     }
 };
