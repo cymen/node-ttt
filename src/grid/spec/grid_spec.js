@@ -84,7 +84,7 @@ describe('grid', function() {
         it('asks rows for the horizontal rows', function() {
             var grid = new Grid(3);
 
-            grid.horizontal_rows();
+            grid.horizontalRows();
 
             expect(mockRows.horizontal).toHaveBeenCalled();
         });
@@ -92,7 +92,7 @@ describe('grid', function() {
         it('asks rows for the vertical rows', function() {
             var grid = new Grid(3);
 
-            grid.vertical_rows();
+            grid.verticalRows();
 
             expect(mockRows.vertical).toHaveBeenCalled();
         });
@@ -100,7 +100,7 @@ describe('grid', function() {
         it('asks rows for the diagonal rows', function() {
             var grid = new Grid(3);
 
-            grid.diagonal_rows();
+            grid.diagonalRows();
 
             expect(mockRows.diagonal).toHaveBeenCalled();
         });

@@ -37,15 +37,15 @@ module.exports = function(length, values) {
             return unset;
         },
 
-        horizontal_rows: function() {
+        horizontalRows: function() {
             return rows.horizontal(this.cells());
         },
 
-        vertical_rows: function() {
+        verticalRows: function() {
             return rows.vertical(this.cells());
         },
 
-        diagonal_rows: function() {
+        diagonalRows: function() {
             return rows.diagonal(this.cells());
         },
 

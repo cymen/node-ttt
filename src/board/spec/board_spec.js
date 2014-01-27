@@ -78,7 +78,7 @@ describe('Board', function() {
             Board = proxyquire('../board', {
                 '../grid/grid': function() {
                     return {
-                        horizontal_rows: horizontalRowsSpy
+                        horizontalRows: horizontalRowsSpy
                     };
                 }
             });

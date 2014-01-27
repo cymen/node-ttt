@@ -22,7 +22,7 @@ module.exports = function(cells) {
         },
 
         horizontalRows: function() {
-            return grid.horizontal_rows();
+            return grid.horizontalRows();
         },
 
         isFull: function() {
