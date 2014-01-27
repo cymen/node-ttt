@@ -25,16 +25,16 @@ module.exports = function(length, values) {
             return state[index];
         },
 
-        open: function() {
-            var open = [];
+        unset: function() {
+            var unset = [];
 
             keys.forEach(function(k) {
                 if (state[k] === undefined) {
-                    open.push(k);
+                    unset.push(k);
                 }
             });
 
-            return open;
+            return unset;
         },
 
         horizontal_rows: function() {

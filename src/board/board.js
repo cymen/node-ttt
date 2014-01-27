@@ -14,7 +14,7 @@ module.exports = function(cells) {
         },
 
         empty_cells: function() {
-            return grid.open();
+            return grid.unset();
         },
 
         get: function(index) {
@@ -26,7 +26,7 @@ module.exports = function(cells) {
         },
 
         is_full: function() {
-            return grid.open().length === 0;
+            return grid.unset().length === 0;
         },
 
         set: function(index, value) {

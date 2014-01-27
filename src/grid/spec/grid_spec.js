@@ -56,13 +56,13 @@ describe('grid', function() {
     it('returns an array of indexes for cells without values', function() {
         var grid = new Grid(3);
 
-        expect(grid.open()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        expect(grid.unset()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     });
 
     it('correctly identifies a cell set to false to have a value', function() {
         var grid = new Grid(1, [x]);
 
-        expect(grid.open()).toEqual([]);
+        expect(grid.unset()).toEqual([]);
     });
 
     describe('rows', function() {
