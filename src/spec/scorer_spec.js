@@ -81,6 +81,7 @@ describe('scorer', function() {
 
         it('works correctly on an empty row', function() {
             expect(scorer.row_winner([, , , ])).toBeUndefined();
+            expect(scorer.row_winner([undefined, undefined, undefined])).toBeUndefined();
         });
     });
 
