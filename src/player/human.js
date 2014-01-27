@@ -5,7 +5,7 @@ var Q = require('q'),
 
 module.exports = {
     play: function(board) {
-        return ui.player_choose_cell(board.empty_cells());
+        return ui.player_choose_cell(board.emptyCells());
     },
 
     type: 'human'

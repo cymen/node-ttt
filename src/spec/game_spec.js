@@ -21,9 +21,9 @@ describe('game', function() {
 
         expect(promise).toHaveBeenResolvedWith(done, function() {
             expect(scorer.winner(board)).toBe(x);
-            expect(board.horizontal_rows()).toContain([x, o, x]);
-            expect(board.horizontal_rows()).toContain([o, x, o]);
-            expect(board.horizontal_rows()).toContain([x, _, _]);
+            expect(board.horizontalRows()).toContain([x, o, x]);
+            expect(board.horizontalRows()).toContain([o, x, o]);
+            expect(board.horizontalRows()).toContain([x, _, _]);
         });
     });
 
@@ -31,7 +31,7 @@ describe('game', function() {
         var mockPlayer = function() {
             return {
                 play: jasmine.createSpy().andCallFake(function(board) {
-                    return Q.resolve(board.empty_cells()[0]);
+                    return Q.resolve(board.emptyCells()[0]);
                 })
             };
         };

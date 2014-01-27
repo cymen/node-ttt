@@ -34,26 +34,26 @@ describe('Board', function() {
         });
     });
 
-    describe('all_rows', function() {
+    describe('allRows', function() {
         it('gets all the rows on the board', function() {
             var board = new Board();
 
-            expect(board.all_rows().length).toBe(8);
+            expect(board.allRows().length).toBe(8);
         });
     });
 
-    describe('empty_cells', function() {
+    describe('emptyCells', function() {
         it('returns all cell numbers on an empty board', function() {
             var board = new Board();
 
-            expect(board.empty_cells()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            expect(board.emptyCells()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
         });
 
         it('does not return cell numbers that have been played', function() {
             var board = new Board();
             board.set(5, x);
 
-            expect(board.empty_cells()).toEqual([1, 2, 3, 4, 6, 7, 8, 9]);
+            expect(board.emptyCells()).toEqual([1, 2, 3, 4, 6, 7, 8, 9]);
         });
     });
 
@@ -72,29 +72,29 @@ describe('Board', function() {
         });
     });
 
-    describe('horizontal_rows', function() {
+    describe('horizontalRows', function() {
         it('asks the grid for the horizontal rows', function() {
-            var horizontal_rows_spy = jasmine.createSpy('horizontal_rows');
+            var horizontalRowsSpy = jasmine.createSpy('horizontalRows');
             Board = proxyquire('../board', {
                 '../grid/grid': function() {
                     return {
-                        horizontal_rows: horizontal_rows_spy
+                        horizontal_rows: horizontalRowsSpy
                     };
                 }
             });
 
             var board = new Board();
-            board.horizontal_rows();
+            board.horizontalRows();
 
-            expect(horizontal_rows_spy).toHaveBeenCalled();
+            expect(horizontalRowsSpy).toHaveBeenCalled();
         });
     });
 
-    describe('is_full', function() {
+    describe('isFull', function() {
         it('returns false on an empty board', function() {
             var board = new Board();
 
-            expect(board.is_full()).toBe(false);
+            expect(board.isFull()).toBe(false);
         });
 
         it('returns true on a full board', function() {
@@ -104,7 +104,7 @@ describe('Board', function() {
                 o, x, o
             ]);
 
-            expect(board.is_full()).toBe(true);
+            expect(board.isFull()).toBe(true);
         });
     });
 

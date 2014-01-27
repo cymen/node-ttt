@@ -10,7 +10,7 @@ module.exports = {
     },
 
     isTied: function(board) {
-        return board.is_full() && !this.isWon(board);
+        return board.isFull() && !this.isWon(board);
     },
 
     isWon: function(board) {
@@ -32,14 +32,14 @@ module.exports = {
     },
 
     turn: function(board) {
-        var empty_cell_count = board.empty_cells().length,
+        var empty_cell_count = board.emptyCells().length,
             odd_number_of_empty_cells = empty_cell_count % 2 === 1;
 
         return (odd_number_of_empty_cells) ? x : o;
     },
 
     winner: function(board) {
-        var rows = board.all_rows(),
+        var rows = board.allRows(),
             length = rows.length,
             i;
 

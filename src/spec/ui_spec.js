@@ -18,7 +18,7 @@ describe('user interface', function() {
             var rowsSpy = jasmine.createSpy().andReturn([]);
 
             ui.ending({
-                horizontal_rows: rowsSpy
+                horizontalRows: rowsSpy
             }, 'abc is xyz!');
 
             expect(console.log).toHaveBeenCalledWith('abc is xyz!');
@@ -117,7 +117,7 @@ describe('user interface', function() {
             var rowsSpy = jasmine.createSpy().andReturn([]);
 
             ui.print_board({
-                horizontal_rows: rowsSpy
+                horizontalRows: rowsSpy
             });
 
             expect(rowsSpy).toHaveBeenCalled();
@@ -133,7 +133,7 @@ describe('user interface', function() {
             });
 
             ui.print_board({
-                horizontal_rows: rowsSpy
+                horizontalRows: rowsSpy
             });
 
             expect(console.log).toHaveBeenCalledWith('THE VIEW');

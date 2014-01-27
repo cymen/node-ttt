@@ -47,6 +47,6 @@ module.exports = {
 
     print_board: function(board) {
         console.log();
-        console.log(view.board(board.horizontal_rows()));
+        console.log(view.board(board.horizontalRows()));
     }
 };

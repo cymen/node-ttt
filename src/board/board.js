@@ -9,11 +9,11 @@ module.exports = function(cells) {
     return {
         CELL_COUNT: ROW_LENGTH * ROW_LENGTH,
 
-        all_rows: function() {
+        allRows: function() {
             return grid.rows();
         },
 
-        empty_cells: function() {
+        emptyCells: function() {
             return grid.unset();
         },
 
@@ -21,11 +21,11 @@ module.exports = function(cells) {
             return grid.get(index);
         },
 
-        horizontal_rows: function() {
+        horizontalRows: function() {
             return grid.horizontal_rows();
         },
 
-        is_full: function() {
+        isFull: function() {
             return grid.unset().length === 0;
         },
 

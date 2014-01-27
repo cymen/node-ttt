@@ -4,7 +4,7 @@ var Q = require('q');
 
 module.exports = {
     play: function(board) {
-        return Q.resolve(board.empty_cells()[0]);
+        return Q.resolve(board.emptyCells()[0]);
     },
 
     type: 'computer'

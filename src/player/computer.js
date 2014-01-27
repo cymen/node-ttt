@@ -25,11 +25,11 @@ module.exports = {
             bestResult = -Infinity,
             result;
 
-        if (board.empty_cells().length === 9) {
+        if (board.emptyCells().length === 9) {
             return OPTIMAL_CELLS;
         }
 
-        board.empty_cells().forEach(function(cell) {
+        board.emptyCells().forEach(function(cell) {
             board.set(cell, myMark);
 
             result = -self.negamax(board, self.opponent(myMark), board.CELL_COUNT, -Infinity, Infinity);
@@ -57,7 +57,7 @@ module.exports = {
             return this.analysis(board, player, height);
         }
 
-        board.empty_cells().forEach(function(cell) {
+        board.emptyCells().forEach(function(cell) {
             board.set(cell, player);
 
             playResult = -self.negamax(board, self.opponent(player), height - 1, -beta, -alpha);
