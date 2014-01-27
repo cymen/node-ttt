@@ -7,7 +7,7 @@ var Q = require('q'),
 
 module.exports = {
     analysis: function(board, player, height) {
-        if (scorer.is_won(board)) {
+        if (scorer.isWon(board)) {
             if (scorer.winner(board) === player) {
                 return height;
             } else {
@@ -53,7 +53,7 @@ module.exports = {
             bestWeight = -Infinity,
             playResult;
 
-        if (scorer.is_over(board)) {
+        if (scorer.isOver(board)) {
             return this.analysis(board, player, height);
         }
 

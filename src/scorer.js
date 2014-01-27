@@ -5,19 +5,19 @@ var playerConstants = require('./player/constants'),
     o = playerConstants.O;
 
 module.exports = {
-    is_tied: function(board) {
-        return board.is_full() && !this.is_won(board);
+    isOver: function(board) {
+        return this.isWon(board) || this.isTied(board);
     },
 
-    is_over: function(board) {
-        return this.is_won(board) || this.is_tied(board);
+    isTied: function(board) {
+        return board.is_full() && !this.isWon(board);
     },
 
-    is_won: function(board) {
+    isWon: function(board) {
         return (this.winner(board)) ? true : false;
     },
 
-    row_winner: function(row) {
+    rowWinner: function(row) {
         var firstValue = row[0],
             length = row.length,
             i;
@@ -44,7 +44,7 @@ module.exports = {
             i;
 
         for (i = 0; i < length; i++) {
-            var winner = this.row_winner(rows[i]);
+            var winner = this.rowWinner(rows[i]);
             if (winner) {
                 return winner;
             }

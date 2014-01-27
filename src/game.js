@@ -7,24 +7,6 @@ var Q = require('q'),
     x = playerConstants.X;
 
 module.exports = {
-    play: function(board, player_x, player_o) {
-        var self = this;
-        return Q.promise(function(resolve) {
-            self
-                .get_play(board, player_x, player_o)
-                .then(function(choice) {
-                    board.set(choice, scorer.turn(board));
-                    if (!scorer.is_over(board)) {
-                        resolve(self.play(board, player_x, player_o));
-                    } else {
-                        var ending_message = (scorer.is_tied(board)) ? 'Tied!' : scorer.winner(board) + ' wins!';
-                        ui.ending(board, ending_message);
-                        resolve();
-                    }
-                });
-        });
-    },
-
     get_play: function(board, player_x, player_o) {
         var current_player = (scorer.turn(board) === x) ? player_x : player_o;
 
@@ -33,5 +15,23 @@ module.exports = {
         }
 
         return current_player.play(board);
+    },
+
+    play: function(board, player_x, player_o) {
+        var self = this;
+        return Q.promise(function(resolve) {
+            self
+                .get_play(board, player_x, player_o)
+                .then(function(choice) {
+                    board.set(choice, scorer.turn(board));
+                    if (!scorer.isOver(board)) {
+                        resolve(self.play(board, player_x, player_o));
+                    } else {
+                        var ending_message = (scorer.isTied(board)) ? 'Tied!' : scorer.winner(board) + ' wins!';
+                        ui.ending(board, ending_message);
+                        resolve();
+                    }
+                });
+        });
     }
 };
