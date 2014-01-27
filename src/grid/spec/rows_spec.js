@@ -45,11 +45,11 @@ describe('grid rows (assumes provided array represents a square grid)', function
             'c', 'd'
         ];
 
-        var horizontal_rows = rows.horizontal(values);
+        var horizontalRows = rows.horizontal(values);
 
-        expect(horizontal_rows.length).toBe(2);
-        expect(horizontal_rows).toContain(['a', 'b']);
-        expect(horizontal_rows).toContain(['c', 'd']);
+        expect(horizontalRows.length).toBe(2);
+        expect(horizontalRows).toContain(['a', 'b']);
+        expect(horizontalRows).toContain(['c', 'd']);
     });
 
     it('returns vertical rows', function() {
@@ -58,11 +58,11 @@ describe('grid rows (assumes provided array represents a square grid)', function
             'c', 'd'
         ];
 
-        var vertical_rows = rows.vertical(values);
+        var verticalRows = rows.vertical(values);
 
-        expect(vertical_rows.length).toBe(2);
-        expect(vertical_rows).toContain(['a', 'c']);
-        expect(vertical_rows).toContain(['b', 'd']);
+        expect(verticalRows.length).toBe(2);
+        expect(verticalRows).toContain(['a', 'c']);
+        expect(verticalRows).toContain(['b', 'd']);
     });
 
     it('returns all rows', function() {
