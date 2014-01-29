@@ -7,11 +7,7 @@ var computer = require('../computer'),
     _;
 
 describe('computer', function() {
-    it('has a type', function() {
-        expect(computer.type).toBe('computer');
-    });
-
-    it('returns a promise', function(done) {
+    it('picks a cell', function(done) {
         var board = new Board([
             x, o, x,
             o, _, _,
@@ -24,4 +20,9 @@ describe('computer', function() {
             expect(move).toBe(5);
         });
     });
+
+    it('has a type', function() {
+        expect(computer.type).toBe('computer');
+    });
+
 });
