@@ -40,13 +40,13 @@ Or:
 
 ## External packages (npm)
 
-### single-prompt
+### keypress-prompt
 
 I wrote a prompter for node as it is a bit ugly how it all works to get input
 on the console. This has been released as a separate node module (npm) with
 the source here:
 
-https://github.com/cymen/node-single-prompt
+https://github.com/cymen/node-keypress-prompt
 
 ### Q
 
