@@ -1,7 +1,7 @@
 'use strict';
 require('promise-matchers');
 
-var prompter = require('single-prompt'),
+var prompter = require('keypress-prompt'),
     proxyquire = require('proxyquire'),
     ui = require('../ui'),
     playerConstants = require('../player/constants'),
