@@ -124,7 +124,10 @@ describe('negamax', function() {
         });
     });
 
-    describe('sortChoicesOptimally', function() {
-        it('sorts the cell choices with the most winning cells first', function() {});
+    describe('optimalChoiceSorter', function() {
+        it('sorts one of the optimal cells to be before non-optimal cells', function() {
+            expect([2, 5].sort(negamax.optimalChoiceSorter)).toEqual([5, 2]);
+            expect([1, 2, 3, 4, 5, 6, 7, 8, 9].sort(negamax.optimalChoiceSorter)).toEqual([1, 3, 5, 7, 9, 8, 6, 4, 2]);
+        });
     });
 });
