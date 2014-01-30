@@ -50,6 +50,5 @@ https://github.com/cymen/node-keypress-prompt
 
 ### Q
 
-Q is a tool for making and composing asynchronous promises in JavaScript.
+[Q](https://github.com/kriskowal/q/tree/v1) is a tool for making and composing asynchronous promises in JavaScript.
 
-https://github.com/kriskowal/q/tree/v1
