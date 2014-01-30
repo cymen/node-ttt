@@ -1,5 +1,5 @@
 'use strict';
-var prompter = require('single-prompt'),
+var prompter = require('keypress-prompt'),
     playerConstants = require('./player/constants'),
     x = playerConstants.X,
     o = playerConstants.O,

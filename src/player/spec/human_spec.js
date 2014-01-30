@@ -1,7 +1,7 @@
 'use strict';
 require('promise-matchers');
 
-var prompter = require('single-prompt'),
+var prompter = require('keypress-prompt'),
     Board = require('../../board/board'),
     human = require('../human');
 
