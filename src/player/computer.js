@@ -2,6 +2,7 @@
 
 var Q = require('q'),
     negamax = require('./negamax');
+//negamax = require('./ai/fast-negamax/shim');
 
 module.exports = {
     play: function(board) {

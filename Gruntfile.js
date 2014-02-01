@@ -6,7 +6,8 @@ module.exports = function(grunt) {
         'package.json',
         'Gruntfile.js',
         'src/**/*.js',
-        'spec/**/*.js'
+        'spec/**/*.js',
+        '!src/player/ai/fast-negamax/**/*.js'
     ];
 
     grunt.initConfig({
