@@ -29,9 +29,7 @@ module.exports = {
 
             result = -self.negamax(board, self.opponent(myMark), 1, -Infinity, Infinity);
 
-            if (result > bestResult) {
-                bestResult = result;
-            }
+            bestResult = Math.max(result, bestResult);
 
             if (weights[result]) {
                 weights[result].push(cell);
