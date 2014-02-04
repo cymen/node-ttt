@@ -25,32 +25,32 @@ describe('negamax', function() {
             expect(result).toBe(0);
         });
 
-        it('returns a positive height if player is the winner', function() {
+        it('returns negative depth if game is won', function() {
             var player = x,
                 board = new Board([
                     x, o, x,
                     o, x, o,
                     x, x, o
                 ]),
-                height = 5;
+                depth = 5;
 
-            var result = negamax.analysis(board, player, height);
+            var result = negamax.analysis(board, depth);
 
-            expect(result).toBe(5);
+            expect(result).toBe(-5);
         });
 
-        it('returns a negative height if player is the loser', function() {
+        it('returns infinity if the game is not won or lost', function() {
             var player = o,
                 board = new Board([
                     x, o, x,
-                    o, x, o,
-                    x, x, o
+                    _, _, o,
+                    x, _, _
                 ]),
-                height = 13;
+                depth = 5;
 
-            var result = negamax.analysis(board, player, height);
+            var result = negamax.analysis(board, depth);
 
-            expect(result).toBe(-13);
+            expect(result).toBe(Infinity);
         });
     });
 
