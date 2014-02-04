@@ -14,7 +14,7 @@ module.exports = {
             return 0;
         }
 
-        return Infinity;
+        return depth * depth;
     },
 
     getBestMoves: function(board) {
@@ -30,6 +30,9 @@ module.exports = {
             result = -self.negamax(board, self.opponent(myMark), 1, -Infinity, Infinity);
 
             bestResult = Math.max(result, bestResult);
+            if (result > bestResult) {
+                bestResult = result;
+            }
 
             if (weights[result]) {
                 weights[result].push(cell);

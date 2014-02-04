@@ -50,7 +50,7 @@ describe('negamax', function() {
 
             var result = negamax.analysis(board, depth);
 
-            expect(result).toBe(Infinity);
+            expect(result).toBe(25);
         });
     });
 
