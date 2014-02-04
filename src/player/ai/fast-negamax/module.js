@@ -4184,13 +4184,6 @@ DYNAMIC_BASE = DYNAMICTOP = Runtime.alignMemory(STACK_MAX);
 assert(DYNAMIC_BASE < TOTAL_MEMORY, "TOTAL_MEMORY not big enough for stack");
 var FUNCTION_TABLE = [0, 0];
 // EMSCRIPTEN_START_FUNCS
-function _printBoard($board){
- var label=0;
- var sp=STACKTOP; (assert((STACKTOP|0) < (STACK_MAX|0))|0);
- var $1;
- $1=$board;
- STACKTOP=sp;return;
-}
 function _isPlayed($value){
  var label=0;
  var sp=STACKTOP; (assert((STACKTOP|0) < (STACK_MAX|0))|0);
@@ -4496,26 +4489,22 @@ function _over($board){
  var $5=($4|0)!=0;
  if($5){label=2;break;}else{label=3;break;}
  case 2: 
- var $7=$2;
- _printBoard($7);
  $1=1;
  label=6;break;
  case 3: 
- var $9=$2;
- var $10=_tied($9);
- var $11=($10|0)==1;
- if($11){label=4;break;}else{label=5;break;}
+ var $8=$2;
+ var $9=_tied($8);
+ var $10=($9|0)==1;
+ if($10){label=4;break;}else{label=5;break;}
  case 4: 
- var $13=$2;
- _printBoard($13);
  $1=1;
  label=6;break;
  case 5: 
  $1=0;
  label=6;break;
  case 6: 
- var $16=$1;
- STACKTOP=sp;return $16;
+ var $14=$1;
+ STACKTOP=sp;return $14;
   default: assert(0, "bad label: " + label);
  }
 }
@@ -4585,7 +4574,7 @@ function _turn($board){
  var $6=($5?1:2);
  STACKTOP=sp;return $6;
 }
-function _analysis($board,$player,$height){
+function _analysis($board,$depth){
  var label=0;
  var sp=STACKTOP; (assert((STACKTOP|0) < (STACK_MAX|0))|0);
  label = 1; 
@@ -4594,41 +4583,35 @@ function _analysis($board,$player,$height){
  var $1;
  var $2;
  var $3;
- var $4;
- var $theWinner;
  $2=$board;
- $3=$player;
- $4=$height;
- var $5=$2;
- var $6=_winner($5);
- $theWinner=$6;
- var $7=$theWinner;
- var $8=($7|0)!=0;
- if($8){label=2;break;}else{label=5;break;}
+ $3=$depth;
+ var $4=$2;
+ var $5=_winner($4);
+ var $6=($5|0)!=0;
+ if($6){label=2;break;}else{label=3;break;}
  case 2: 
- var $10=$theWinner;
- var $11=$3;
- var $12=($10|0)==($11|0);
- if($12){label=3;break;}else{label=4;break;}
+ var $8=$3;
+ var $9=(((-$8))|0);
+ $1=$9;
+ label=6;break;
  case 3: 
- var $14=$4;
- $1=$14;
- label=6;break;
+ var $11=$2;
+ var $12=_tied($11);
+ var $13=($12|0)!=0;
+ if($13){label=4;break;}else{label=5;break;}
  case 4: 
- var $16=$4;
- var $17=(((-$16))|0);
- $1=$17;
- label=6;break;
- case 5: 
  $1=0;
  label=6;break;
+ case 5: 
+ $1=32000;
+ label=6;break;
  case 6: 
- var $20=$1;
- STACKTOP=sp;return $20;
+ var $17=$1;
+ STACKTOP=sp;return $17;
   default: assert(0, "bad label: " + label);
  }
 }
-function _negamax_recursive($board,$player,$height,$alpha,$beta){
+function _negamax_recursive($board,$player,$depth,$alpha,$beta){
  var label=0;
  var sp=STACKTOP; (assert((STACKTOP|0) < (STACK_MAX|0))|0);
  label = 1; 
@@ -4645,106 +4628,107 @@ function _negamax_recursive($board,$player,$height,$alpha,$beta){
  var $playResult;
  $2=$board;
  $3=$player;
- $4=$height;
+ $4=$depth;
  $5=$alpha;
  $6=$beta;
  $bestWeight=-32000;
  var $7=$2;
  var $8=_over($7);
  var $9=($8|0)==1;
- if($9){label=2;break;}else{label=3;break;}
+ if($9){label=3;break;}else{label=2;break;}
  case 2: 
- var $11=$2;
- _printBoard($11);
- var $12=$2;
- var $13=$3;
- var $14=$4;
- var $15=_analysis($12,$13,$14);
- $1=$15;
- label=16;break;
+ var $11=$4;
+ var $12=($11|0)>6;
+ if($12){label=3;break;}else{label=4;break;}
  case 3: 
- $i=0;
- label=4;break;
+ var $14=$2;
+ var $15=$4;
+ var $16=_analysis($14,$15);
+ $1=$16;
+ label=17;break;
  case 4: 
- var $18=$i;
- var $19=($18|0)<9;
- if($19){label=5;break;}else{label=15;break;}
+ $i=0;
+ label=5;break;
  case 5: 
- var $21=$i;
- var $22=$2;
- var $23=(($22+$21)|0);
- var $24=HEAP8[($23)];
- var $25=($24&255);
- var $26=($25|0)==0;
- var $27=($26&1);
- var $28=_isPlayed($27);
- var $29=($28|0)!=0;
- if($29){label=6;break;}else{label=13;break;}
+ var $19=$i;
+ var $20=($19|0)<9;
+ if($20){label=6;break;}else{label=16;break;}
  case 6: 
- var $31=$3;
- var $32=(($31)&255);
- var $33=$i;
- var $34=$2;
- var $35=(($34+$33)|0);
- HEAP8[($35)]=$32;
- var $36=$2;
- var $37=$3;
- var $38=_opponent($37);
- var $39=$4;
- var $40=((($39)-(1))|0);
- var $41=$6;
- var $42=(((-$41))|0);
- var $43=$5;
- var $44=(((-$43))|0);
- var $45=_negamax_recursive($36,$38,$40,$42,$44);
- var $46=((($45)*(-1))&-1);
- $playResult=$46;
- var $47=$i;
- var $48=$2;
- var $49=(($48+$47)|0);
- HEAP8[($49)]=0;
- var $50=$playResult;
- var $51=$bestWeight;
- var $52=($50|0)>($51|0);
- if($52){label=7;break;}else{label=8;break;}
+ var $22=$i;
+ var $23=$2;
+ var $24=(($23+$22)|0);
+ var $25=HEAP8[($24)];
+ var $26=($25&255);
+ var $27=($26|0)==0;
+ var $28=($27&1);
+ var $29=_isPlayed($28);
+ var $30=($29|0)!=0;
+ if($30){label=7;break;}else{label=14;break;}
  case 7: 
- var $54=$playResult;
- $bestWeight=$54;
- label=8;break;
+ var $32=$3;
+ var $33=(($32)&255);
+ var $34=$i;
+ var $35=$2;
+ var $36=(($35+$34)|0);
+ HEAP8[($36)]=$33;
+ var $37=$2;
+ var $38=$3;
+ var $39=_opponent($38);
+ var $40=$4;
+ var $41=((($40)+(1))|0);
+ var $42=$6;
+ var $43=(((-$42))|0);
+ var $44=$5;
+ var $45=(((-$44))|0);
+ var $46=_negamax_recursive($37,$39,$41,$43,$45);
+ var $47=((($46)*(-1))&-1);
+ $playResult=$47;
+ var $48=$i;
+ var $49=$2;
+ var $50=(($49+$48)|0);
+ HEAP8[($50)]=0;
+ var $51=$playResult;
+ var $52=$bestWeight;
+ var $53=($51|0)>($52|0);
+ if($53){label=8;break;}else{label=9;break;}
  case 8: 
- var $56=$playResult;
- var $57=$5;
- var $58=($56|0)>($57|0);
- if($58){label=9;break;}else{label=10;break;}
+ var $55=$playResult;
+ $bestWeight=$55;
+ label=9;break;
  case 9: 
- var $60=$playResult;
- $5=$60;
- label=10;break;
+ var $57=$playResult;
+ var $58=$5;
+ var $59=($57|0)>($58|0);
+ if($59){label=10;break;}else{label=11;break;}
  case 10: 
- var $62=$5;
- var $63=$6;
- var $64=($62|0)>=($63|0);
- if($64){label=11;break;}else{label=12;break;}
+ var $61=$playResult;
+ $5=$61;
+ label=11;break;
  case 11: 
- var $66=$5;
- $1=$66;
- label=16;break;
+ var $63=$5;
+ var $64=$6;
+ var $65=($63|0)>=($64|0);
+ if($65){label=12;break;}else{label=13;break;}
  case 12: 
- label=13;break;
+ var $67=$5;
+ $1=$67;
+ label=17;break;
  case 13: 
  label=14;break;
  case 14: 
- var $70=$i;
- var $71=((($70)+(1))|0);
- $i=$71;
- label=4;break;
+ label=15;break;
  case 15: 
- var $73=$bestWeight;
- $1=$73;
- label=16;break;
+ var $71=$i;
+ var $72=((($71)+(1))|0);
+ $i=$72;
+ label=5;break;
  case 16: 
- var $75=$1;
- STACKTOP=sp;return $75;
+ var $74=$bestWeight;
+ $1=$74;
+ label=17;break;
+ case 17: 
+ var $76=$1;
+ STACKTOP=sp;return $76;
   default: assert(0, "bad label: " + label);
  }
 }
@@ -4757,6 +4741,7 @@ function _negamax($board,$result){
  var $1;
  var $2;
  var $player;
+ var $initialDepth;
  var $i;
  var $playResult;
  $1=$board;
@@ -4786,6 +4771,7 @@ function _negamax($board,$result){
  var $18=$1;
  var $19=_turn($18);
  $player=$19;
+ $initialDepth=1;
  $i=0;
  label=4;break;
  case 4: 
@@ -4813,26 +4799,27 @@ function _negamax($board,$result){
  var $39=$1;
  var $40=$player;
  var $41=_opponent($40);
- var $42=_negamax_recursive($39,$41,9,-32000,32000);
- var $43=((($42)*(-1))&-1);
- $playResult=$43;
- var $44=$playResult;
- var $45=(($44)&255);
- var $46=$i;
- var $47=$2;
- var $48=(($47+$46)|0);
- HEAP8[($48)]=$45;
- var $49=$i;
- var $50=$1;
- var $51=(($50+$49)|0);
- HEAP8[($51)]=0;
+ var $42=$initialDepth;
+ var $43=_negamax_recursive($39,$41,$42,-32000,32000);
+ var $44=((($43)*(-1))&-1);
+ $playResult=$44;
+ var $45=$playResult;
+ var $46=(($45)&255);
+ var $47=$i;
+ var $48=$2;
+ var $49=(($48+$47)|0);
+ HEAP8[($49)]=$46;
+ var $50=$i;
+ var $51=$1;
+ var $52=(($51+$50)|0);
+ HEAP8[($52)]=0;
  label=7;break;
  case 7: 
  label=8;break;
  case 8: 
- var $54=$i;
- var $55=((($54)+(1))|0);
- $i=$55;
+ var $55=$i;
+ var $56=((($55)+(1))|0);
+ $i=$56;
  label=4;break;
  case 9: 
  label=10;break;
